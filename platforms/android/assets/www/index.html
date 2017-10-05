@@ -1,178 +1,43 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-	  <meta charset="utf-8">
-  	<!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
-    <!-- link about slidebar -->
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-red.min.css">
-
+<html>
+  <head>
+    <meta charset="utf-8">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <!-- link about my css -->
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-
-    <!-- link about carousel -->
+    <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/login.css">
 
-    <!-- import fontawesome -->
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- import google fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-
-  	<title>QueHacerHoyTabasco.com</title>
-</head>
-<body>
-	<!-- Check the conection on the devices -->
-	<div id="messageConnection" style="background-color: gray; color: white; width: 100%; height: 20px; text-align: center;">Sin Coneccion a Internet</div>
-	<!-- Simple header with fixed tabs. -->
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
-		<header class="mdl-layout__header">
-			<div class="mdl-layout__header-row">
-				<div class="col-12">
-					<img src="images/logo_quehacerhoy.png" style="max-width: 30%; margin-left: 100px;">
-				</div>
-			</div>
-			<div class="carousel slide" data-ride="carousel">
-				<!-- Wrapper for slides -->
-				<div class="carousel-inner">
-					<div class="item active">
-						<img src="images/carousel/slide1.png" alt="Slide 1">
-					</div>
-					<div class="item">
-						<img src="images/carousel/slide2.png" alt="Slide 2" >
-					</div>
-					<div class="item">
-						<img src="images/carousel/slide1.png" alt="Slide 1" >
-					</div>
-				</div>
-			</div>
-			<!-- Tabs -->
-			<div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-				<a href="#fixed-tab-1" class="mdl-layout__tab is-active" style="text-decoration:none">QUE HACER HOY</a>
-				<a href="#fixed-tab-2" class="mdl-layout__tab" style="text-decoration:none">CATEGORIAS</a>
-			</div>
-			<!-- End Tabs -->
-		</header>
-			<div class="mdl-layout__drawer">
-				<span class="mdl-layout-title"><i class="fa fa-cogs" aria-hidden="true">&nbsp; &nbsp;</i>Settings</span>
-					<nav class="mdl-navigation">
-						<div class="settings">
-							<p> Activar GPS &nbsp;&nbsp; &nbsp;
-								<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-									<input type="checkbox" id="switch-1" class="mdl-switch__input">
-									<span class="mdl-switch__label"></span>
-								</label>
-							</p>
-						</div>
-						<div class="settings">
-							<p> Notificaciones&nbsp;
-								<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
-									<input type="checkbox" id="switch-2" class="mdl-switch__input">
-									<span class="mdl-switch__label"></span>
-								</label>
-							</p>
-						</div>
-						<hr>
-						<a class="mdl-navigation__link" href="#"><i class="fa fa-paper-plane" aria-hidden="true">&nbsp; &nbsp;Enviar Sugerencias</i></a>
-						<hr class="small-hr">
-						<a class="mdl-navigation__link" href="#"><i class="fa fa-user-circle-o" aria-hidden="true">&nbsp; &nbsp;Conocenos mas</i></a><hr class="small-hr">
-						<a class="mdl-navigation__link" href="#"><i class="fa fa-leanpub" aria-hidden="true">&nbsp; &nbsp;Terminos y Politicas</i></a>
-					</nav>
-			</div>
-			<main class="mdl-layout__content">
-				<!-- Start Panel 1 -->
-				<section class="mdl-layout__tab-panel is-active" id="fixed-tab-1" style="margin-top: 5px">
-					<div id="app"></div>
-				</section>
-				<!-- End Panel 1 -->
-				<!-- Start Panel 2 -->
-				<section class="mdl-layout__tab-panel" id="fixed-tab-2" style="margin-top: 5px">
-					<nav style="background-color: #4ec2bf;">
-						<div class="nav-wrapper">
-							<form>
-								<div class="input-field">
-									<input id="search" type="search" required style="font-size: 16px">
-									<label class="label-icon" for="search"><i class="material-icons">search</i></label>
-									<i class="material-icons">close</i>
-								</div>
-							</form>
-						</div>
-					</nav>
-					<a class="waves-effect btn-flat nombre-black" style="margin-top: 5px" onclick="javascript:location.href='categories/cultura.html'">
-						<p class="buttons">
-							<p><i class="fa fa-globe" aria-hidden="true"></i>&nbsp; &nbsp;CULTURA</p>
-							<div class="italic">(museos, teatros, galereias, artesanias)</div>
-						</p>
-					</a>
-					<a class="waves-effect btn-flat nombre-black" onclick="javascript:location.href='sections/page.html'">
-						<p class="buttons">
-							<p><i class="fa fa-map-o" aria-hidden="true"></i>&nbsp; &nbsp;TURISMO</p>
-							<div class="italic">(pueblo magico, parques y zoologicos, rios y playas)</div>
-						</p>
-					</a>
-					<a class="waves-effect waves-teal btn-flat nombre-black" onclick="javascript:location.href='sections/page.html'">
-						<p class="buttons">
-							<p><i class="fa fa-cutlery" aria-hidden="true"></i>&nbsp; &nbsp;COMIDA</p>
-							<div class="italic">(regional, nacional e internacional)</div>
-						</p>
-					</a>
-					<a class="waves-effect waves-teal btn-flat nombre-black" onclick="javascript:location.href='sections/page.html'">
-						<p class="buttons">
-							<p><i class="fa fa-coffee" aria-hidden="true"></i>&nbsp; &nbsp;CAFÉ</p>
-							<div class="italic">(locales y franquicias)</div>
-						</p>
-					</a>
-					<a class="waves-effect waves-teal btn-flat nombre-black" onclick="javascript:location.href='sections/page.html'">
-						<p class="buttons">
-							<p><i class="fa fa-glass" aria-hidden="true"></i>&nbsp; &nbsp;VIDA NOCTURNA</p>
-							<div class="italic">(antros, cerveceras, pubs, al aire libre, alternativos y men's club)</div>
-						</p>
-					</a>
-					<a class="waves-effect waves-teal btn-flat nombre-black" onclick="javascript:location.href='sections/page.html'">
-						<p class="buttons">
-							<p><i class="fa fa-ticket" aria-hidden="true"></i>&nbsp; &nbsp;ENTRETENIMIENTO</p>
-							<div class="italic">(ferias, festivales, beisbol, casinos y plazas comerciales)</div>
-						</p>
-					</a>
-			</section>
-			<!-- End Panel 2 -->
-		</main>
-	</div>
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4 centered">
+          <div class="account-wall">
+            <div class="logo">
+              <img src="images/logo_quehacerhoy.png" style="max-width: 60%;">
+            </div>
+            <form class="form-signin">
+              <button class="btn btn-lg btn-danger btn-block" type="submit">
+                <a href="app.html">
+                  Google
+                </a>
+              </button>
+              <!-- <button class="btn btn-lg btn-danger btn-block" type="submit">
+                Facebook
+              </button> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 
-
-
-
-	<!--Import jQuery before materialize.js-->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="js/materialize.min.js"></script>
-
-	<!-- import jQuery bootstrap -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-
-	<!-- import material design -->
-	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-
-	<!-- scripts about carousel -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-	<!-- scripts of cordova -->
-	<script type="text/javascript" src="cordova.js"></script>
-
-	<!-- script geolocation -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGxiotR0lmAeChtodxynKaEs6TCTac2MY" type="text/javascript"></script>
-
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
-</body>
+    <!-- scripts of cordova -->
+    <script type="text/javascript" src="cordova.js"></script>
+    <!-- bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
 </html>
