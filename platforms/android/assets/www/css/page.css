@@ -1,0 +1,75 @@
+body {
+	font-family: 'Raleway', sans-serif !important;
+	margin-right: 15px;
+	margin-left: 15px;
+	margin-top: 3px !important;
+}
+
+.mdl-layout {
+	height: auto;
+}
+
+.mdl-layout__header {
+	background: white;
+}
+
+.carousel {
+	box-shadow: 2px 2px 10px RGBA(0,0,0, .5);
+	margin-top: 1.2px;
+	padding-top: 0px;
+	width: 100%;
+	height: auto !important;
+}
+
+.item img {
+	width: 100%;
+	display: inline-block;
+}
+
+.mdl-button {
+	margin-left: 15px;
+}
+
+.mdl-button i {
+	color: #f9a846;
+}
+
+.mdl-layout__header-row {
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 50px;
+}
+
+.mdl-layout__header-row i {
+	padding-top: 0px;
+	padding-left: 0px;
+}
+
+.nombre-lugar {
+	width: 100%;
+	margin-top: 0px;
+	padding: 3px;
+	background-color: #f9a846;
+	color: white;
+	text-align: center;
+}
+
+.reseña {
+	width: 100%;
+	margin: 0rem 0 0rem 0;
+	padding: 20px;
+	padding-top: 11px;
+	padding-bottom: 1px;
+	background-color: #f5f5f5;
+	text-align: center !important;
+}
+
+.collection-item.avatar{
+	padding-top: 20px !important;
+}
+
+.row.espacio {
+	margin-bottom: 0px !important;
+}
+
+
