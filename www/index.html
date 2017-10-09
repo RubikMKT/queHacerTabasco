@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="css/login.css">
+    <!-- css -->
+    <link type="text/css" rel="stylesheet" href="css/index.css">
 
     <title>Login</title>
   </head>
-  <body>
+  <body id="app" onload="onLoad()">
     <div class="container">
       <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4 centered">
@@ -19,14 +20,16 @@
               <img src="images/logo_quehacerhoy.png" style="max-width: 60%;">
             </div>
             <form class="form-signin">
-              <button class="btn btn-lg btn-danger btn-block" type="submit">
-                <a href="app.html">
-                  Google
-                </a>
-              </button>
-              <!-- <button class="btn btn-lg btn-danger btn-block" type="submit">
+              <button id="login_facebook" class="btn btn-lg btn-primary btn-block" type="submit">
                 Facebook
-              </button> -->
+
+              </button>
+              <button id="logout_facebook" class="btn btn-lg btn-primary btn-block" type="submit">
+                salir
+              </button>
+              <button id="details_facebook" class="btn btn-lg btn-primary btn-block" type="submit">
+                Detalles
+              </button>
             </form>
           </div>
         </div>
@@ -37,7 +40,9 @@
 
     <!-- scripts of cordova -->
     <script type="text/javascript" src="cordova.js"></script>
+    <!-- js -->
+    <script type="text/javascript" src="js/index.js"></script>
     <!-- bootstrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
   </body>
 </html>
