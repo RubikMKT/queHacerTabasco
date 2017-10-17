@@ -7,9 +7,6 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.example.PruebaAPIProject"
-        },
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.example.PruebaAPIProject"
         },
@@ -23,11 +20,14 @@
             "APP_ID": "135031803893746",
             "APP_NAME": "QueHacer",
             "PACKAGE_NAME": "com.quehacertabasco"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.quehacertabasco"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.example.PruebaAPIProject"
+            "PACKAGE_NAME": "com.quehacertabasco"
         }
     }
 }
