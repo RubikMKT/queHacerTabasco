@@ -46,7 +46,7 @@ function errorDB(err) {
 }
 
 function insertDB(tx) {
-  axios.get('http://165.227.111.118/api/user/getPublicidad')
+  axios.get('http://165.227.111.118/api/user/getPublicidads')
     .then( function (res)  {
       for( var i in res.data) {
 

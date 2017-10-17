@@ -1,4 +1,4 @@
-var geo = {
+var maps = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -15,7 +15,7 @@ var geo = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError);
+        navigator.geolocation.getCurrentPosition(maps.onSuccess, maps.onError);
     },
 
     onSuccess: function(position){
@@ -45,4 +45,4 @@ var geo = {
     }
 };
 
-geo.initialize();
+maps.initialize();
