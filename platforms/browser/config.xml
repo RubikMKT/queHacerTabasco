@@ -26,4 +26,5 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon density="mdpi" height="57" src="www/images/iconqht.png" width="57" />
 </widget>

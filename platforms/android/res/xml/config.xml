@@ -22,6 +22,9 @@
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
     </feature>
+    <feature name="Toast">
+        <param name="android-package" value="nl.xservices.plugins.Toast" />
+    </feature>
     <name>Que Hacer Tabasco</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -41,4 +44,5 @@
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="android-minSdkVersion" value="15" />
+    <preference name="orientation" value="portrait" />
 </widget>

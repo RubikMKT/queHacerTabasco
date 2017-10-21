@@ -17,6 +17,7 @@
         "cordova-plugin-geolocation": "^2.4.3",
         "cordova-plugin-network-information": "^1.3.3",
         "cordova-plugin-whitelist": "^1.3.2",
+        "cordova-plugin-x-toast": "^2.6.0",
         "cordova-sqlite-storage": "^2.0.4"
     },
     "cordova": {
@@ -28,7 +29,8 @@
                 "APP_ID": "135031803893746",
                 "APP_NAME": "QueHacer"
             },
-            "cordova-plugin-geolocation": {}
+            "cordova-plugin-geolocation": {},
+            "cordova-plugin-x-toast": {}
         },
         "platforms": [
             "android",
