@@ -6,7 +6,7 @@ var app = {
         this.isLogin();
     },
     isLogin: function() {
-      
+
     },
 };
 
@@ -24,11 +24,13 @@ logout_facebook.addEventListener("click", logout, false);
 
 function login() {
     facebookConnectPlugin.login(["email"], function(response){
-        alert('Login in');
-        alert(JSON.stringify(response.authResponse))
+        // alert('Login in');
+        // alert(JSON.stringify(response.authResponse))
+        window.plugins.toast.show('Login in', 'short', 'center')
         },
-        function loginError (error) {
-            console.error(error)
+        function loginError() {
+            // console.error(error)
+            window.plugins.toast.show('Error de login', 'short', 'center')
         }
     );
 }
@@ -47,7 +49,7 @@ function details() {
             )
         }
         else {
-            alert('No logueado')
+            window.plugins.toast.show('No logueado', 'short', 'center')
         }
     })
 

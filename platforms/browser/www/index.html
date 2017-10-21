@@ -29,9 +29,16 @@
               <button id="details_facebook" class="btn btn-lg btn-primary btn-block" type="submit">
                 Detalles
               </button>
-              <button class="btn btn-lg btn-danger btn-block" type="submit">
-                <a href="app.html">Siguiente</a>
+              <a href="app.html" class="btn btn-lg btn-danger btn-block" type="submit">
+                Siguiente
+              </a>
+              <button onclick="myFunction()">
+                Click me
               </button>
+              <p id="demo"></p>
+              <button onclick="window.plugins.toast.showShortTop('Hello there!', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)})">Toast showShortTop</button>
+              <button onclick="window.plugins.toast.showLongBottom('Hello there!', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)})">Toast showLongBottom</button>
+              <button onclick="window.plugins.toast.show('Hello there!', 'long', 'center', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)})">Toast show long center</button>
             </form>
           </div>
         </div>
@@ -39,7 +46,11 @@
     </div>
 
 
-
+    <script>
+      function myFunction() {
+        document.getElementById("demo").innerHTML = "Hello World";
+      }
+    </script>
     <!-- scripts of cordova -->
     <script type="text/javascript" src="cordova.js"></script>
     <!-- js -->

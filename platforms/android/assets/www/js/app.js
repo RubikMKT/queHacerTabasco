@@ -1,17 +1,18 @@
 var db = null
 
 document.addEventListener("offline", onOffline, false);
-document.addEventListener("online", onOnline, false);
+// document.addEventListener("online", onOnline, false);
 
 function onOffline () {
   callDB()
-    $('#messageConnection').css('display','block')
+    // $('#messageConnection').css('display','block')
+    window.plugins.toast.show('Sin conexion a internet', 'long', 'center')
 }
 
-function onOnline () {
-  onDeviceReady()
-    $('#messageConnection').css('display','none')
-}
+// function onOnline () {
+//   onDeviceReady()
+//     $('#messageConnection').css('display','none')
+// }
 
 function callDB () {
   db = window.sqlitePlugin.openDatabase({name: 'quehacer.db', location: 'default'});
@@ -30,8 +31,6 @@ function onDeviceReady() {
   db.transaction(populateDB, errorDB, successCB);
 }
 
-
-
 function populateDB(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS PUBLICIDAD (id INTEGER PRIMARY KEY, name, ubicacion, resena, categoria, precio, horario, telefono, a, e, s)');
 }
@@ -42,7 +41,8 @@ function successCB() {
 }
 
 function errorDB(err) {
-    alert("Error processing SQL: "+err.code);
+    // alert("Error processing SQL: "+err.code);
+    window.plugins.toast.show('Error processing SQL', 'short', 'center')
 }
 
 function insertDB(tx) {
@@ -55,15 +55,17 @@ function insertDB(tx) {
           tx.executeSql('INSERT OR REPLACE INTO PUBLICIDAD VALUES (?,?,?,?,?,?,?,?,?,?,?)', [ ''+res.data[i].id +'',''+res.data[i].cliente.empresa +'', ''+res.data[i].ubicacion+'', ''+res.data[i].resena+'', ''+res.data[i].categoria.name+'', ''+res.data[i].categoria.costo+'', ''+res.data[i].categoria.horario+'', ''+res.data[i].categoria.telefono+'', ''+res.data[i].categoria.clima+'', ''+res.data[i].categoria.estacionamiento+'', ''+res.data[i].categoria.domicilio+'' ]);
 
         }, function (error) {
-          alert('Transaction ERROR: ' + error.message);
+          // alert('Transaction ERROR: ' + error.message);
+          window.plugins.toast.show('Transaction ERROR', 'short', 'center')
         }, function () {
           db.transaction(queryDB)
         }
       );
       }
     })
-    .catch( function (error) {
-          alert(error.message + 'error')
+    .catch( function () {
+          // alert(error.message + 'error')
+          window.plugins.toast.show('Error', 'short', 'center')
     })
 }
 
@@ -95,7 +97,8 @@ function queryDB() {
     },
 
     function(tx, error) {
-      alert('SELECT error: ' + error.message);
+      // alert('SELECT error: ' + error.message);
+      window.plugins.toast.show('Error', 'short', 'center')
     });
   });
 }
