@@ -1,12 +1,13 @@
 var app = {
     initialize: function() {
+        alert('iniciando')
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
     onDeviceReady: function() {
         this.isLogin();
     },
     isLogin: function() {
-
+        alert('login')
     },
 };
 
@@ -16,14 +17,25 @@ facebook_btn = document.getElementById('login_facebook');
 details_facebook = document.getElementById('details_facebook');
 logout_facebook = document.getElementById('logout_facebook');
 
-facebook_btn.addEventListener("click", login, false);
+facebook_btn.addEventListener("click", function login() {
+    facebookConnectPlugin.login(["email"], function(response){
+        alert('Login in');
+        alert(JSON.stringify(response.authResponse))
+        window.plugins.toast.show('Login in', 'short', 'center')
+        },
+        function loginError(err) {
+            alert(err)
+            window.plugins.toast.show('Error de login' + err, 'short', 'center')
+        }
+    )
+})
+
 details_facebook.addEventListener("click", details, false);
 logout_facebook.addEventListener("click", logout, false);
 
-
-
-function login() {
-    facebookConnectPlugin.login(["email"], function(response){
+//function login() {
+//    alert('click')
+    /*facebookConnectPlugin.login(["email"], function(response){
         // alert('Login in');
         // alert(JSON.stringify(response.authResponse))
         window.plugins.toast.show('Login in', 'short', 'center')
@@ -32,12 +44,12 @@ function login() {
             // console.error(error)
             window.plugins.toast.show('Error de login', 'short', 'center')
         }
-    );
-}
+    );*/
+//}
 
 function details() {
 
-    facebookConnectPlugin.getLoginStatus( (response) => {
+    facebookConnectPlugin.getLoginStatus( function log(response) {
         if(response.status == 'connected'){
             facebookConnectPlugin.api('/' + response.authResponse.userID + '?fields=id,name,gender',[],
                 function onSuccess (result) {
@@ -56,7 +68,7 @@ function details() {
 }
 
 function logout() {
-    facebookConnectPlugin.logout((response)=> {
+    facebookConnectPlugin.logout( function logOut(response) {
 
         alert(JSON.stringify(response))
     })
