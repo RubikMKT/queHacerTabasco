@@ -1,13 +1,11 @@
 var app = {
     initialize: function() {
-        alert('iniciando')
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
     onDeviceReady: function() {
         this.isLogin();
     },
     isLogin: function() {
-        alert('login')
     },
 };
 
@@ -18,6 +16,7 @@ details_facebook = document.getElementById('details_facebook');
 logout_facebook = document.getElementById('logout_facebook');
 
 facebook_btn.addEventListener("click", function login() {
+    //Fb connect function.... review the invalid key hashes
     facebookConnectPlugin.login(["email"], function(response){
         alert('Login in');
         alert(JSON.stringify(response.authResponse))
@@ -69,7 +68,6 @@ function details() {
 
 function logout() {
     facebookConnectPlugin.logout( function logOut(response) {
-
         alert(JSON.stringify(response))
     })
 }

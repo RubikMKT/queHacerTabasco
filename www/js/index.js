@@ -1,13 +1,11 @@
 var app = {
     initialize: function() {
-        alert('iniciando')
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
     onDeviceReady: function() {
         this.isLogin();
     },
     isLogin: function() {
-        alert('login')
     },
 };
 
