@@ -15,10 +15,12 @@ facebook_btn = document.getElementById('login_facebook');
 details_facebook = document.getElementById('details_facebook');
 logout_facebook = document.getElementById('logout_facebook');
 
-facebook_btn.addEventListener("click", function login() {
+facebook_btn.addEventListener("click", function login(e) {
+    e.preventDefault()
     //Fb connect function.... review the invalid key hashes
-    facebookConnectPlugin.login(["email"], function(response){
-        alert('Login in');
+    console.log("adsadsa")
+    facebookConnectPlugin.login(["email"], function (userData){
+        alert(JSON.stringify(userData));
         alert(JSON.stringify(response.authResponse))
         window.plugins.toast.show('Login in', 'short', 'center')
         },
