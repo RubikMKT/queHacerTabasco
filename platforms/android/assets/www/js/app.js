@@ -1,18 +1,18 @@
 var db = null
 
 document.addEventListener("offline", onOffline, false);
-// document.addEventListener("online", onOnline, false);
+document.addEventListener("online", onOnline, false);
 
 function onOffline () {
   callDB()
-    // $('#messageConnection').css('display','block')
+    $('#messageConnection').css('display','block')
     window.plugins.toast.show('Sin conexion a internet', 'long', 'center')
 }
 
-// function onOnline () {
-//   onDeviceReady()
-//     $('#messageConnection').css('display','none')
-// }
+function onOnline () {
+   onDeviceReady()
+     $('#messageConnection').css('display','none')
+}
 
 function callDB () {
   db = window.sqlitePlugin.openDatabase({name: 'quehacer.db', location: 'default'});
@@ -32,7 +32,7 @@ function onDeviceReady() {
 }
 
 function populateDB(tx) {
-    tx.executeSql('CREATE TABLE IF NOT EXISTS PUBLICIDAD (id INTEGER PRIMARY KEY, name, ubicacion, resena, categoria, precio, horario, telefono, a, e, s)');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS PUBLICIDAD (id INTEGER PRIMARY KEY, name, ubicacion, resena, categoria, precio, horario, telefono, imagen,a, e, s)');
 }
 
 function successCB() {
@@ -41,30 +41,30 @@ function successCB() {
 }
 
 function errorDB(err) {
-    // alert("Error processing SQL: "+err.code);
     window.plugins.toast.show('Error processing SQL', 'short', 'center')
 }
 
 function insertDB(tx) {
   axios.get('http://165.227.111.118/api/user/getPublicidads')
     .then( function (res)  {
-      for( var i in res.data) {
 
+      let rest = res.data
+      rest.forEach(function(el) {
         db.transaction(function(tx) {
 
-          tx.executeSql('INSERT OR REPLACE INTO PUBLICIDAD VALUES (?,?,?,?,?,?,?,?,?,?,?)', [ ''+res.data[i].id +'',''+res.data[i].cliente.empresa +'', ''+res.data[i].ubicacion+'', ''+res.data[i].resena+'', ''+res.data[i].categoria.name+'', ''+res.data[i].categoria.costo+'', ''+res.data[i].categoria.horario+'', ''+res.data[i].categoria.telefono+'', ''+res.data[i].categoria.clima+'', ''+res.data[i].categoria.estacionamiento+'', ''+res.data[i].categoria.domicilio+'' ]);
+          tx.executeSql('INSERT OR REPLACE INTO PUBLICIDAD VALUES (?,?,?,?,?,?,?,?,?,?,?,?)', [ ''+el.id +'',''+el.cliente.empresa +'', ''+el.ubicacion+'', ''+el.resena+'', ''+el.categoria.name+'', ''+el.categoria.costo+'', ''+el.categoria.horario+'', ''+el.categoria.telefono+'', ''+el.cliente.imagen+'', ''+el.categoria.clima+'', ''+el.categoria.estacionamiento+'', ''+el.categoria.domicilio+'' ]);
 
         }, function (error) {
-          // alert('Transaction ERROR: ' + error.message);
+           alert('Transaction ERROR: ' + error.message);
           window.plugins.toast.show('Transaction ERROR', 'short', 'center')
         }, function () {
           db.transaction(queryDB)
-        }
-      );
-      }
+        });
+      
+      })  
     })
     .catch( function () {
-          // alert(error.message + 'error')
+           alert(error.message + 'error')
           window.plugins.toast.show('Error', 'short', 'center')
     })
 }
@@ -75,12 +75,18 @@ function queryDB() {
     tx.executeSql('SELECT * FROM PUBLICIDAD', [], function(tx, rs) {
       var tblText = '';
       var len = rs.rows.length;
+
       for (var i = 0; i < len; i++) {
+        
+        var imgSplit =  rs.rows.item(i).imagen
+        var getImg = imgSplit.split("../")
+        var img = 'http://165.227.111.118/'+getImg[2]
+
         var cards =
         `<div class="col s12 m7">
             <div class="card horizontal" onclick="javascript:location.href='sections/page.html'">
               <div class="card-image">
-                <img src="images/cardimages/lacevicheria.png">
+                <img src="`+ img +`">
               </div>
               <div class="card-stacked">
                 <div class="card-content" >
