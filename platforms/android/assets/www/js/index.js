@@ -1,3 +1,4 @@
+
 var app = {
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -17,11 +18,9 @@ logout_facebook = document.getElementById('logout_facebook');
 
 facebook_btn.addEventListener("click", function login(e) {
     e.preventDefault()
-    //Fb connect function.... review the invalid key hashes
-    console.log("adsadsa")
-    facebookConnectPlugin.login(["email"], function (userData){
-        alert(JSON.stringify(userData));
-        alert(JSON.stringify(response.authResponse))
+    facebookConnectPlugin.login(["email", "public_profile", "user_birthday"], function (userData){
+        alert(JSON.stringify(userData.name))
+        console.log(userData)
         window.plugins.toast.show('Login in', 'short', 'center')
         },
         function loginError(err) {
@@ -48,11 +47,12 @@ logout_facebook.addEventListener("click", logout, false);
     );*/
 //}
 
-function details() {
+function details(e) {
+    e.preventDefault()
 
     facebookConnectPlugin.getLoginStatus( function log(response) {
         if(response.status == 'connected'){
-            facebookConnectPlugin.api('/' + response.authResponse.userID + '?fields=id,name,gender',[],
+            facebookConnectPlugin.api('/' + response.authResponse.userID + '?fields=id,name,gender',["user_birthday"],
                 function onSuccess (result) {
                     alert(JSON.stringify(result))
                 },
