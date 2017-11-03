@@ -1,4 +1,4 @@
-
+axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 var app = {
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -7,41 +7,59 @@ var app = {
         this.isLogin();
     },
     isLogin: function() {
+        facebookConnectPlugin.getLoginStatus( function log(response) {
+            if(response.status == 'connected'){
+                window.location = 'app.html'
+            }else{
+                //window.location = 'index.html'
+            }
+        })
     },
 };
 
 app.initialize();
 
 facebook_btn = document.getElementById('login_facebook');
-details_facebook = document.getElementById('details_facebook');
 logout_facebook = document.getElementById('logout_facebook');
 
 facebook_btn.addEventListener("click", function login(e) {
     e.preventDefault()
-    facebookConnectPlugin.login(["email", "public_profile", "user_birthday", "user_hometown", "user_location"], function (userData){
+    facebookConnectPlugin.login(["email", "public_profile", "user_birthday", "user_location"], function (userData){
         window.plugins.toast.show('Login in', 'short', 'center')
         details()
         },
         function loginError(err) {
-            alert(err)
             window.plugins.toast.show('Error de login' + err, 'short', 'center')
         }
     )
 })
 
-details_facebook.addEventListener("click", details, false);
-logout_facebook.addEventListener("click", logout, false);
-
 
 function details(e) {
-    //e.preventDefault()
 
     facebookConnectPlugin.getLoginStatus( function log(response) {
         if(response.status == 'connected'){
-            facebookConnectPlugin.api('/' + response.authResponse.userID + '?fields=id,name,email,location,hometown,birthday,gender',[],
+            facebookConnectPlugin.api('/' + response.authResponse.userID + '?fields=id,name,email,location,birthday,gender',[],
                 function onSuccess (result) {
-
-                    alert(JSON.stringify(result))
+                    var d = new Date();
+                    var n = d.getFullYear();
+                    var ageRest = result.birthday
+                    var arrAge = ageRest.split('/')
+                    var age = (parseInt(n) - parseInt(arrAge[2]))
+                    data = {
+                        email: ""+result.email+"",
+                        name: ""+result.name+"",
+                        age: ""+age+"",
+                        gender: ""+result.gender+"",
+                        locations: ""+result.location.name+""
+                    }
+                    axios.post('http://165.227.111.118/api/user/createUserApp', data)
+                    .then(function (response) {
+                        window.location = 'app.html'
+                    })
+                    .catch(function (error) {
+                        window.plugins.toast.show('Error de conexión', 'short', 'center')
+                    });
                 },
                 function onError(error) {
                     alert(JSON.stringify(error))

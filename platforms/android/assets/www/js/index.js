@@ -11,7 +11,7 @@ var app = {
             if(response.status == 'connected'){
                 window.location = 'app.html'
             }else{
-                //window.location = 'index.html'
+                //window.location = 'app.html'
             }
         })
     },
