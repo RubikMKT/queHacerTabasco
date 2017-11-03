@@ -29,6 +29,33 @@ function onDeviceReady() {
 
   db = window.sqlitePlugin.openDatabase({name: 'quehacer.db', location: 'default'});
   db.transaction(populateDB, errorDB, successCB);
+
+  getCategory()
+}
+
+
+function getCategory(){
+
+  axios.get('http://165.227.111.118/api/user/getCategorias')
+    .then(function (res){
+        categoris = res.data 
+        var cats = ''
+        categoris.forEach(function (el){
+
+        var template = `<a class="waves-effect btn-flat nombre-black" onclick="javascript:location.href='sections/page.html'">
+            <p class="buttons">
+              <p><i class="fa fa-map-o" aria-hidden="true"></i>` + el.name + `</p>
+              <div class="italic">(` + el.descripcion + `)</div>
+            </p>
+          </a> `;
+          cats += template
+        }) 
+        document.getElementById('category').innerHTML = cats
+
+    })
+    .catch(function (err){
+
+    })
 }
 
 function populateDB(tx) {
@@ -103,7 +130,6 @@ function queryDB() {
     },
 
     function(tx, error) {
-      // alert('SELECT error: ' + error.message);
       window.plugins.toast.show('Error', 'short', 'center')
     });
   });

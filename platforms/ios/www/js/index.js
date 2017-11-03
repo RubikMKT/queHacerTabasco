@@ -10,8 +10,6 @@ var app = {
         facebookConnectPlugin.getLoginStatus( function log(response) {
             if(response.status == 'connected'){
                 window.location = 'app.html'
-            }else{
-                //window.location = 'index.html'
             }
         })
     },
