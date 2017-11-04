@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	  <meta charset="utf-8">
+		<meta charset="utf-8">
+
+		<!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   	<!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> 
 
     <!-- link about slidebar -->
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-red.min.css">
 
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
     <!-- link about my css -->
-    <link rel="stylesheet" type="text/css" href="css/app.css">
-
-    <!-- link about carousel -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <!-- import fontawesome -->
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/app.css">
+		
+		<!-- slide -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 
     <!-- import google fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+		
   	<title>QueHacerHoyTabasco.com</title>
 </head>
 <body>
@@ -39,20 +35,15 @@
 					<img src="images/logo_quehacerhoy.png" style="max-width: 30%; margin-left: 100px;">
 				</div>
 			</div>
-			<div class="carousel slide" data-ride="carousel">
-				<!-- Wrapper for slides -->
-				<div class="carousel-inner">
-					<div class="item active">
-						<img src="images/carousel/slide1.png" alt="Slide 1">
-					</div>
-					<div class="item">
-						<img src="images/carousel/slide2.png" alt="Slide 2" >
-					</div>
-					<div class="item">
-						<img src="images/carousel/slide1.png" alt="Slide 1" >
-					</div>
+			<div class="">
+				<div class="col-12">
+					<div class="bxslider">
+						<div><img src="./images/carousel/slide1.png" title="Funky roots"></div>
+						<div><img src="./images/carousel/slide2.png" title="The long and winding road"></div>
+						<div><img src="./images/carousel/slide1.png" title="Happy trees"></div>
 				</div>
-			</div>
+				</div>	
+			</div>		
 			<!-- Tabs -->
 			<div class="mdl-layout__tab-bar mdl-js-ripple-effect">
 				<a href="#fixed-tab-1" class="mdl-layout__tab is-active" style="text-decoration:none">QUE HACER HOY</a>
@@ -79,11 +70,21 @@
 								</label>
 							</p>
 						</div>
-						<hr>
-						<a class="mdl-navigation__link" href="sugerencias.html"><i class="fa fa-paper-plane" aria-hidden="true">&nbsp; &nbsp;Enviar Sugerencias</i></a>
+
+						<a class="mdl-navigation__link" href="sugerencias.html">
+							<i class="material-icons">send</i>
+								&nbsp; &nbsp;Enviar Sugerencias
+						</a>
 						<hr class="small-hr">
-						<a class="mdl-navigation__link" href="#"><i class="fa fa-user-circle-o" aria-hidden="true">&nbsp; &nbsp;Conocenos mas</i></a><hr class="small-hr">
-						<a class="mdl-navigation__link" href="#"><i class="fa fa-leanpub" aria-hidden="true">&nbsp; &nbsp;Terminos y Politicas</i></a>
+						<a class="mdl-navigation__link" href="#">
+							<i class="material-icons">account_circle</i>
+							&nbsp; &nbsp;Conocenos mas
+						</a>
+						<hr class="small-hr">
+						<a class="mdl-navigation__link" href="#">
+							<i class="material-icons">import_contacts</i>
+							&nbsp; &nbsp;Terminos y Politicas
+						</a>
 					</nav>
 			</div>
 			<main class="mdl-layout__content">
@@ -105,41 +106,37 @@
 							</form>
 						</div>
 					</nav>
-					<div id="category">
-
-						<a class="waves-effect btn-flat nombre-black" onclick="javascript:location.href='sections/page.html'">
-							<p class="buttons">
-								<p><i class="fa fa-map-o" aria-hidden="true"></i>&nbsp; &nbsp;TURISMO</p>
-								<div class="italic">(pueblo magico, parques y zoologicos, rios y playas)</div>
-							</p>
-						</a>
-
-					</div>
+					<div id="category"></div>
 			</section>
 			<!-- End Panel 2 -->
 		</main>
 	</div>
 
-
-
-
-
-
-	<!--Import jQuery before materialize.js-->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+		<!--Import jQuery before materialize.js-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 	<!-- import material design -->
-	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-
-	<!-- scripts about carousel -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> 
 
 	<!-- scripts of cordova -->
 	<script type="text/javascript" src="cordova.js"></script>
 
+	<!-- slide -->
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
-</body>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(event) { 
+			$('.bxslider').bxSlider({
+				mode: 'fade',
+				captions: false,
+				slideWidth: 1200,
+				responsive: true,
+				controls: false,
+				hideControlOnEnd: true,
+			});
+		});
+	</script>
 </html>
