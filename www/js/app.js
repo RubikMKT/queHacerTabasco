@@ -33,25 +33,13 @@ function onDeviceReady() {
   getCategory()
 }
 
-
 function getCategory(){
+
+  var templateCategory = Handlebars.templates['category'];
 
   axios.get('http://165.227.111.118/api/user/getCategorias')
     .then(function (res){
-        categoris = res.data 
-        var cats = ''
-        categoris.forEach(function (el){
-
-        var template = `<a class="waves-effect btn-flat nombre-black" onclick="javascript:location.href='sections/page.html'">
-            <p class="buttons">
-              <p><i class="fa fa-map-o" aria-hidden="true"></i>`  +  el.name + `</p>
-              <div class="italic">(` + el.descripcion + `)</div>
-            </p>
-          </a> `;
-          cats += template
-        }) 
-        document.getElementById('category').innerHTML = cats
-
+      document.getElementById('category').innerHTML = templateCategory(res) 
     })
     .catch(function (err){
 
@@ -98,39 +86,47 @@ function insertDB(tx) {
 
 function queryDB() {
   db.transaction(function(tx) {
-
+    var templateListPublicidad = null
     tx.executeSql('SELECT * FROM PUBLICIDAD', [], function(tx, rs) {
-      var tblText = '';
+      var jsonpub = {
+        "data":[]
+      }
+      var pubArray = []
+      var imgSplit = null
+      var getImg = null
+      var img = null
+      
       var len = rs.rows.length;
-
       for (var i = 0; i < len; i++) {
         
-        var imgSplit =  rs.rows.item(i).imagen
-        var getImg = imgSplit.split("../")
-        var img = 'http://165.227.111.118/'+getImg[2]
+        imgSplit =  rs.rows.item(i).imagen
+        getImg = imgSplit.split("../")
+        img = 'http://165.227.111.118/'+getImg[2]
 
-        var cards =
-        `<div class="col s12 m7">
-            <div class="card horizontal" onclick="javascript:location.href='sections/page.html'">
-              <div class="card-image">
-                <img src="`+ img +`">
-              </div>
-              <div class="card-stacked">
-                <div class="card-content" >
-                    <p class="nombre-black"> ` + rs.rows.item(i).name + `</p>
-                      <i><p>`+ rs.rows.item(i).ubicacion +`</p></i>
-                    <p>`+ rs.rows.item(i).resena +`</p>
-                </div>
-              </div>
-            </div>
-          </div> `
-          tblText += cards;
+        pubArray.push({
+          "id": rs.rows.item(i).id,
+          "imagen": img,
+          "name":rs.rows.item(i).name,
+          "ubicacion":rs.rows.item(i).ubicacion,
+          "resena":rs.rows.item(i).resena
+        });
       }
-      document.getElementById("app").innerHTML = tblText;
+      $.extend(jsonpub.data, pubArray);
+      
+      templateListPublicidad = Handlebars.templates['listPublicidad']
+      document.getElementById('listPub').innerHTML = templateListPublicidad(jsonpub) 
     },
 
     function(tx, error) {
       window.plugins.toast.show('Error', 'short', 'center')
     });
   });
+}
+
+function renderPublicidad(id){
+  alert(id)
+}
+
+function listPubCat (id) {
+  alert(id)
 }
