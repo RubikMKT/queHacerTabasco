@@ -122,15 +122,16 @@ function queryDB() {
   });
 }
 
+var publicidadConten = document.getElementById('publicidad');
 
 function renderPublicidad(id){
   axios.get('http://165.227.111.118/api/user/searchPublicidad'+ '/'+id)
     .then(res =>{
 
-      document.getElementById('publicidad').style.left = 0      
+      publicidadConten.style.left = 0      
 
       templatePublicidad = Handlebars.templates['publicidad']
-      document.getElementById('publicidad').innerHTML = templatePublicidad(res) 
+      publicidadConten.innerHTML = templatePublicidad(res) 
 
       initialize()
 
@@ -151,6 +152,7 @@ function listPubCat (id) {
 }
 
 function closePublicidad(e) {
-  document.getElementById('publicidad').style.left = '100%'
+  publicidadConten.style.left = '100%'
+  publicidadConten.innerHTML = ''
 }
 
