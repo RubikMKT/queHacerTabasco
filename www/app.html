@@ -5,28 +5,24 @@
 
 		<!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  	<!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Compiled and minified CSS -->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> 
 
     <!-- link about slidebar -->
     <link rel="stylesheet" href="css/libs/material.indigo-red.min.css">
-
-    <!-- link about my css -->
-		<link rel="stylesheet" type="text/css" href="css/app.css">
-
-		<!-- pages -->
-		<link rel="stylesheet" type="text/css" href="css/page.css">
 		
 		<!-- slide -->
 		<link rel="stylesheet" href="css/libs/bxslider.min.css">
 
-	
+		<!-- link about my css -->
+		<link rel="stylesheet" type="text/css" href="css/app.css">
+
 		<!-- import fontawesome -->
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+		<!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- import google fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
@@ -111,7 +107,6 @@
 			<main class="mdl-layout__content">
 				<!-- Start Panel 1 -->
 				<section class="mdl-layout__tab-panel is-active" id="fixed-tab-1" style="margin-top: 5px">
-
 					<div id="listPub"></div>
 
 				</section>
@@ -135,12 +130,16 @@
 			</section>
 			<!-- End Panel 2 -->
 		</main>
-		<div id="publicidad">	</div>
+		<div id="publicidad" style="overflow: scroll; height: 100%;">	</div>
 	</div>
 
 </body>
 	<!--Import jQuery before materialize.js-->
 	<script src="js/libs/jquery.min.js"></script>
+	<!-- import material design -->
+	<script src="js/libs/material.min.js"></script> 
+		<!-- slide -->
+	<script src="js/libs/jquery.bxslider.min.js"></script>
 	<!-- Handlebars -->
 	<script src="js/libs/handlebars.runtime.min.js"></script>
 	<!-- template -->
@@ -153,12 +152,9 @@
 	<script src="js/libs/axios.min.js"></script>
 	<!--  script -->
 	<script src="js/app.js"></script>
-	<!-- import material design -->
-	<script src="js/libs/material.min.js"></script> 
+
 	<!-- scripts of cordova -->
 	<script src="cordova.js" ></script>
-	<!-- slide -->
-	<script src="js/libs/jquery.bxslider.min.js"></script>
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function(event) { 
