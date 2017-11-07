@@ -125,3 +125,11 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 	margin-bottom: 0 !important; 
 	border: 0px !important;
 }
+#publicidad{
+	height: 100%;
+	left: 100%;
+	width: 100%;
+	background-color: white;
+	position: absolute;
+	z-index: 999999;
+}

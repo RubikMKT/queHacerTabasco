@@ -62,7 +62,6 @@ function errorDB(err) {
 function insertDB(tx) {
   axios.get('http://165.227.111.118/api/user/getPublicidads')
     .then( function (res)  {
-
       let rest = res.data
       rest.forEach(function(el) {
         db.transaction(function(tx) {
@@ -123,10 +122,35 @@ function queryDB() {
   });
 }
 
+
 function renderPublicidad(id){
-  alert(id)
+  axios.get('http://165.227.111.118/api/user/searchPublicidad'+ '/'+id)
+    .then(res =>{
+
+      document.getElementById('publicidad').style.left = 0      
+
+      templatePublicidad = Handlebars.templates['publicidad']
+      document.getElementById('publicidad').innerHTML = templatePublicidad(res) 
+
+      initialize()
+
+      $('.bxslider_pub').bxSlider({
+        mode: 'fade',
+        captions: false,
+        slideWidth: 1200,
+        responsive: true,
+        controls: false,
+        hideControlOnEnd: true,
+      });
+      
+    })
 }
 
 function listPubCat (id) {
   alert(id)
 }
+
+function closePublicidad(e) {
+  document.getElementById('publicidad').style.left = '100%'
+}
+

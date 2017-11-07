@@ -16,16 +16,37 @@
 
     <!-- link about my css -->
 		<link rel="stylesheet" type="text/css" href="css/app.css">
+
+		<!-- pages -->
+		<link rel="stylesheet" type="text/css" href="css/page.css">
 		
 		<!-- slide -->
 		<link rel="stylesheet" href="css/libs/bxslider.min.css">
 
+	
+		<!-- import fontawesome -->
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
     <!-- import google fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-		
-  	<title>QueHacerHoyTabasco.com</title>
+		<title>QueHacerHoyTabasco.com</title>
+		<style>
+			html,body {
+				display: flex;
+				flex-wrap: wrap;
+				width: 100%;
+				margin: 0px;
+				padding: 0px
+			}
+		</style>
 </head>
 <body>
+
+<div class="mdl-layout__header-row">
+	<div class="col-12">
+	</div>	
+</div>
 
 	<!-- Simple header with fixed tabs. -->
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
@@ -114,6 +135,7 @@
 			</section>
 			<!-- End Panel 2 -->
 		</main>
+		<div id="publicidad">	</div>
 	</div>
 
 </body>
@@ -121,17 +143,23 @@
 	<script src="js/libs/jquery.min.js"></script>
 	<!-- Handlebars -->
 	<script src="js/libs/handlebars.runtime.min.js"></script>
-		<!-- template -->
+	<!-- template -->
 	<script src="js/templates.js"></script>
+	<!-- location -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSjgW8wwbdxs_Rp3JypXOdTbRCSUaRwpc"></script>
+	<script src="js/location.js"></script>
+
+		<!-- axios -->
+	<script src="js/libs/axios.min.js"></script>
+	<!--  script -->
+	<script src="js/app.js"></script>
 	<!-- import material design -->
 	<script src="js/libs/material.min.js"></script> 
 	<!-- scripts of cordova -->
 	<script src="cordova.js" ></script>
 	<!-- slide -->
 	<script src="js/libs/jquery.bxslider.min.js"></script>
-	<!-- axios -->
-	<script src="js/libs/axios.min.js"></script>
-	<script src="js/app.js"></script>
+
 	<script>
 		document.addEventListener("DOMContentLoaded", function(event) { 
 			$('.bxslider').bxSlider({
