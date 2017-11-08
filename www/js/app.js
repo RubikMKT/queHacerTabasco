@@ -130,7 +130,7 @@
         templatePublicidad = Handlebars.templates['publicidad']
         publicidadConten.innerHTML = templatePublicidad(res) 
 
-        initialize()
+        initialize(res.data.mapaLat, res.data.mapaLng)
 
         $('.bxslider_pub').bxSlider({
           mode: 'fade',
