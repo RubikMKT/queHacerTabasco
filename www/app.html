@@ -28,21 +28,39 @@
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 		<title>QueHacerHoyTabasco.com</title>
 		<style>
-			html,body {
+			#loader {
 				display: flex;
-				flex-wrap: wrap;
+				flex-direction: column;
+				justify-content:center;
+				align-items: center;
+				position: absolute;
+				z-index: 9999;
 				width: 100%;
-				margin: 0px;
-				padding: 0px
+				height: 100%;
+				background-color: white;
 			}
 		</style>
 </head>
 <body>
 
-<div class="mdl-layout__header-row">
-	<div class="col-12">
-	</div>	
-</div>
+	<div id="loader">
+		<div class="mdl-layout__header-row">
+				<div class="col-12">
+					<img src="images/logo_quehacerhoy.png" style="max-width: 30%; margin-left: 100px;">
+				</div>
+			</div>
+		<div class="preloader-wrapper big active">
+			<div class="spinner-layer spinner-blue-only">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div><div class="gap-patch">
+					<div class="circle"></div>
+				</div><div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Simple header with fixed tabs. -->
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
@@ -157,15 +175,10 @@
 	<script src="cordova.js" ></script>
 
 	<script>
-		document.addEventListener("DOMContentLoaded", function(event) { 
-			$('.bxslider').bxSlider({
-				mode: 'fade',
-				captions: false,
-				slideWidth: 1200,
-				responsive: true,
-				controls: false,
-				hideControlOnEnd: true,
-			});
-		});
+		function load() {
+			document.getElementById('loader').style.display = 'none'
+		}
+		window.onload = load;
+		
 	</script>
 </html>

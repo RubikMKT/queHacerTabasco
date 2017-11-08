@@ -1,7 +1,14 @@
-body {
+html, body {
 	font-family: 'Raleway', sans-serif !important;
 	margin-top: 0px !important;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	margin: 0px;
+	padding: 0px
 }
+
+
 
 .mdl-layout__header {
 	background: white;
@@ -131,7 +138,7 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 	width: 100%;
 	background-color: white;
 	position: absolute;
-	z-index: 999999;
+	z-index: 999;
 }
 
 
