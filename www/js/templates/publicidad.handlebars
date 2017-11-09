@@ -15,10 +15,18 @@
     <div class="col-12" >
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
+          <style>
+              .bx-pager.bx-default-pager{
+                display: none;
+              }
+            </style>
           <div class="bxslider_pub">
-						<div><img src="images/empresas/cevicheria/1.png"></div>
-            <div><img src="images/empresas/cevicheria/1.png"></div>
-				  </div>
+            {{#each data.pictures}}
+              <div>
+                <div style="background-image: url('{{splitUrl this.url}}'); background-color: #cccccc; background-positon: center; background-size:cover; height:150px; with:100%;"></div>
+              </div>
+            {{/each}}
+		      </div>
         </div>
       </div>
 

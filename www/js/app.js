@@ -107,6 +107,7 @@
             "resena":rs.rows.item(i).resena
           });
         }
+
         $.extend(jsonpub.data, pubArray);
         
         templateListPublicidad = Handlebars.templates['listPublicidad']
@@ -139,8 +140,10 @@
           responsive: true,
           controls: false,
           hideControlOnEnd: true,
+          auto:true,
+          speed:400
         });
-        
+       
       })
   }
 
@@ -160,4 +163,11 @@
     responsive: true,
     controls: false,
     hideControlOnEnd: true,
+    auto:true,
+    speed:400
+  });
+
+  Handlebars.registerHelper('splitUrl', function(url) {
+    var t = url.split("../");
+    return "http://165.227.111.118/" + t[2];
   });
