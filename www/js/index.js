@@ -9,7 +9,7 @@ var app = {
     isLogin: function() {
         facebookConnectPlugin.getLoginStatus( function log(response) {
             if(response.status == 'connected'){
-                window.location = 'app.html'
+               document.getElementById('login').style.display = 'none'
             }
         })
     },
@@ -36,7 +36,7 @@ facebook_btn.addEventListener("click", function login(e) {
 function details(e) {
 
     facebookConnectPlugin.getLoginStatus( function log(response) {
-        if(response.status == 'connected'){
+        if(response.status == 'connected') {
             facebookConnectPlugin.api('/' + response.authResponse.userID + '?fields=id,name,email,location,birthday,gender',[],
                 function onSuccess (result) {
                     var d = new Date();

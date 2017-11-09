@@ -8,7 +8,21 @@ html, body {
 	padding: 0px
 }
 
+section#login {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 999;
+		background-color: white;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+}
 
+.color-face{
+	background-color: #3b5998;
+}
 
 .mdl-layout__header {
 	background: white;
@@ -133,7 +147,7 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 	border: 0px !important;
 }
 #publicidad{
-	height: 100%;
+	height: auto;
 	left: 100%;
 	width: 100%;
 	background-color: white;
@@ -143,10 +157,6 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 
 
 /*  Template */
-
-.mdl-layout {
-	height: auto;
-}
 
 .mdl-layout__header {
 	background: white;

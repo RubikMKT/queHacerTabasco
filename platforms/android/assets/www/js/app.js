@@ -1,3 +1,73 @@
+var btnLogin = document.getElementById('login');
+var app = {
+    initialize: function() {
+        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    },
+    onDeviceReady: function() {
+        this.isLogin();
+    },
+    isLogin: function() {
+        facebookConnectPlugin.getLoginStatus( function (response) {
+            if(response.status == 'connected'){
+               btnLogin.style.display = 'none'
+            }
+        })
+    },
+};
+
+app.initialize();
+
+facebook_btn = document.getElementById('login_facebook');
+
+facebook_btn.addEventListener("click", function login(e) {
+    e.preventDefault()
+    facebookConnectPlugin.login(["email", "public_profile", "user_birthday", "user_location"], function (userData){
+        window.plugins.toast.show('Login in', 'short', 'center')
+        details()
+        },
+        function loginError(err) {
+            window.plugins.toast.show('Error de login' + err, 'short', 'center')
+        }
+    )
+})
+
+function details(e) {
+    facebookConnectPlugin.getLoginStatus( function log(response) {
+        if(response.status == 'connected') {
+            facebookConnectPlugin.api('/' + response.authResponse.userID + '?fields=id,name,email,location,birthday,gender',[],
+                function onSuccess (result) {
+                    var d = new Date();
+                    var n = d.getFullYear();
+                    var ageRest = result.birthday
+                    var arrAge = ageRest.split('/')
+                    var age = (parseInt(n) - parseInt(arrAge[2]))
+                    data = {
+                        email: ""+result.email+"",
+                        name: ""+result.name+"",
+                        age: ""+age+"",
+                        gender: ""+result.gender+"",
+                        locations: ""+result.location.name+""
+                    }
+                    axios.post('http://165.227.111.118/api/user/createUserApp', data)
+                    .then(function (response) {
+                        btnLogin.style.display = 'none'
+                    })
+                    .catch(function (error) {
+                        window.plugins.toast.show('Error de conexión', 'short', 'center')
+                    });
+                },
+                function onError(error) {
+                    alert(JSON.stringify(error))
+                }
+            )
+        }
+        else {
+            window.plugins.toast.show('No logueado', 'short', 'center')
+        }
+    })
+}
+
+
   var db = null
   document.addEventListener("offline", onOffline, false);
   document.addEventListener("online", onOnline, false);
@@ -107,6 +177,7 @@
             "resena":rs.rows.item(i).resena
           });
         }
+
         $.extend(jsonpub.data, pubArray);
         
         templateListPublicidad = Handlebars.templates['listPublicidad']
@@ -130,7 +201,7 @@
         templatePublicidad = Handlebars.templates['publicidad']
         publicidadConten.innerHTML = templatePublicidad(res) 
 
-        initialize()
+        initialize(res.data.mapaLat, res.data.mapaLng)
 
         $('.bxslider_pub').bxSlider({
           mode: 'fade',
@@ -139,8 +210,10 @@
           responsive: true,
           controls: false,
           hideControlOnEnd: true,
+          auto:true,
+          speed:400
         });
-        
+       
       })
   }
 
@@ -160,4 +233,11 @@
     responsive: true,
     controls: false,
     hideControlOnEnd: true,
+    auto:true,
+    speed:400
+  });
+
+  Handlebars.registerHelper('splitUrl', function(url) {
+    var t = url.split("../");
+    return "http://165.227.111.118/" + t[2];
   });
