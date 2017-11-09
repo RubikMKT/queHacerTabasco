@@ -1,0 +1,16 @@
+{{#each data}}
+  <div class="col s12 m7">
+    <div class="card horizontal" onclick="renderPublicidad({{id}})">
+      <div class="card-image">
+        <img src="{{ imagen }}">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content" >
+            <p class="nombre-black"> {{ name }}</p>
+              <i><p>{{ ubicacion }}</p></i>
+            <p>{{ resena }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/each}}

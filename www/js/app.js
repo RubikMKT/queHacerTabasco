@@ -1,5 +1,5 @@
 var btnLogin = document.getElementById('login');
- var db = null
+var db = null
 var app = {
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -11,10 +11,6 @@ var app = {
         facebookConnectPlugin.getLoginStatus( function (response) {
             if(response.status == 'connected'){
                btnLogin.style.display = 'none'
-  
-                document.addEventListener("offline", onOffline, false);
-                document.addEventListener("online", onOnline, false);
-
             }
         })
     },
@@ -55,9 +51,6 @@ function details(e) {
                     axios.post('http://165.227.111.118/api/user/createUserApp', data)
                     .then(function (response) {
                         btnLogin.style.display = 'none'
-                          document.addEventListener("offline", onOffline, false);
-                          document.addEventListener("online", onOnline, false);
-
                     })
                     .catch(function (error) {
                         window.plugins.toast.show('Error de conexión', 'short', 'center')
@@ -74,6 +67,8 @@ function details(e) {
     })
 }
 
+  document.addEventListener("offline", onOffline, false);
+  document.addEventListener("online", onOnline, false);
 
   function onOffline () {
     callDB()

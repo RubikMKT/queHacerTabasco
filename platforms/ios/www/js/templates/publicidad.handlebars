@@ -1,0 +1,106 @@
+  <!-- Simple header with fixed tabs. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs" >
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row marg-head">
+        <!-- Colored FAB button with ripple -->
+        <button class="mdl-button mdl-js-button mdl-button--icon">
+          <a onclick="closePublicidad()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+        </button>
+        <div class="col-12">
+          <img src="images/logo_quehacerhoy.png" style="max-width: 30%; margin-left: 120px;">
+        </div>
+      </div>
+    </header>
+
+    <div class="col-12" >
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <style>
+              .bx-pager.bx-default-pager{
+                display: none;
+              }
+            </style>
+          <div class="bxslider_pub">
+            {{#each data.pictures}}
+              <div>
+                <div style="background-image: url('{{splitUrl this.url}}'); background-color: #cccccc; background-positon: center; background-size:cover; height:150px; with:100%;"></div>
+              </div>
+            {{/each}}
+		      </div>
+        </div>
+      </div>
+
+      <!-- Datos/ mas informacion/ informacion detallada -->
+    <div class="col-12" >
+      <div class="row espacio">
+        <div class="nombre-lugar">
+          <h3>{{ data.cliente.empresa }}</h3>
+        </div>
+        <div class="card-panel resena">
+          <p>{{ data.resena }}</p>
+        </div>
+      </div>
+    </div>
+      <!-- Tabla con informacion del sitio -->
+    <div class="col-12">  
+      <div class="row">
+        <div class="col s12">
+          <ul class="collection">
+            <li class="collection-item avatar">
+              <i class="fa fa-map-marker circle blue" aria-hidden="true"></i>
+              <span class="title">{{ data.ubicacion }}</span>
+            </li>
+            <li class="collection-item avatar">
+                <i class="fa fa-money circle green" aria-hidden="true"></i>
+                <span class="title">{{ data.costo }}</span>
+            </li>
+            <li class="collection-item avatar">
+                <i class="fa fa-clock-o circle red" aria-hidden="true"></i>
+                <span class="title">{{ data.horario }}</span>
+            </li>
+            <li class="collection-item avatar">
+                <i class="fa fa-phone circle orange" aria-hidden="true"></i>
+                <span class="title">{{ data.telefono}}</span>
+            </li>
+             <li class="collection-item avatar">
+              <i class="fa fa-cutlery circle yellow" aria-hidden="true"></i>
+              <span class="title">{{ data.correo }}</span>
+            </li>
+            <li class="collection-item avatar">
+                <i class="fa fa-check-circle circle purple" aria-hidden="true"></i>
+                <span class="title">
+                  <table>
+                    <tr>
+                      <td>Aire acondicionado</td>
+                      <td>Wi-Fi</td>
+                    </tr>
+                    <tr>
+                      <td>Estacionamiento</td>
+                      <td>Bar</td>
+                    </tr>
+                    <tr>
+                      <td>Servicio a domicilio</td>
+                      <td>Musica en vivo</td>
+                    </tr>
+                  </table>
+                </span>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+    <div class="col s12">
+      <!--
+      <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large orange" style="opacity: 0.9;">
+          <img src="images/iconqht.png" alt="" style="margin: 17%" align="center" width="60%" height="auto">
+        </a>
+        <ul>
+          <li class="waves-effect waves-light"><a href="#!"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+          <li class="waves-effect waves-light"><a href="#!"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
+      -->
+    </div>
+  </div>
+  <footer id="map" style="align-self: flex-end; width: 100%; height: 350px;"></footer>
