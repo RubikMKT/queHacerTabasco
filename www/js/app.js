@@ -1,5 +1,8 @@
 var btnLogin = document.getElementById('login');
 var db = null
+var idFacebook = null;
+var idUser = null;
+
 var app = {
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -10,7 +13,8 @@ var app = {
     isLogin: function() {
         facebookConnectPlugin.getLoginStatus( function (response) {
             if(response.status == 'connected'){
-               btnLogin.style.display = 'none'
+              btnLogin.style.display = 'none'
+               idFacebook = response.authResponse.userID 
             }
         })
     },
@@ -21,6 +25,7 @@ facebook_btn = document.getElementById('login_facebook');
 
 facebook_btn.addEventListener("click", function login(e) {
     e.preventDefault()
+    e.stopImmediatePropagation()
     facebookConnectPlugin.login(["email", "public_profile", "user_birthday", "user_location"], function (userData){
         window.plugins.toast.show('Login in', 'short', 'center')
         details()
@@ -43,14 +48,16 @@ function details(e) {
                     var age = (parseInt(n) - parseInt(arrAge[2]))
                     data = {
                         email: ""+result.email+"",
+                        idUserFacebook:""+response.authResponse.userID+"",
                         name: ""+result.name+"",
                         age: ""+age+"",
                         gender: ""+result.gender+"",
-                        locations: ""+result.location.name+""
+                        locations: ""+result.location.name+"",
                     }
                     axios.post('http://165.227.111.118/api/user/createUserApp', data)
                     .then(function (response) {
                         btnLogin.style.display = 'none'
+                       idFacebook = response.idFacebook
                     })
                     .catch(function (error) {
                         window.plugins.toast.show('Error de conexión', 'short', 'center')
@@ -191,8 +198,26 @@ function details(e) {
   var publicidadConten = document.getElementById('publicidad');
 
   function renderPublicidad(id){
+    axios.get('http://165.227.111.118/api/user/searchUserAppsForFacebook/'+idFacebook)
+      .then( function(res) {
+        idUser = res.data.id
+
+        publicidadInteres(idUser)
+
+      })
+
+      function publicidadInteres(idUser){
+          data = {
+            'user_aplication_id': idUser,
+            'publicidad_id': id,
+          }
+
+          axios.post('http://165.227.111.118/api/user/createPublicidadInterest', data)
+            .then(function (res) { })
+      }
+
     axios.get('http://165.227.111.118/api/user/searchPublicidad'+ '/'+id)
-      .then(res =>{
+      .then( function (res) {
 
         publicidadConten.style.left = 0      
 
