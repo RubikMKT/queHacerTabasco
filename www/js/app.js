@@ -49,19 +49,28 @@ function details(e) {
     if(response.status == 'connected') {
         facebookConnectPlugin.api('/' + response.authResponse.userID + '?fields=id,name,email,location,birthday,gender',[],
           function onSuccess (result) {
+            
             var d = new Date();
             var n = d.getFullYear();
             var ageRest = result.birthday
             var arrAge = ageRest.split('/')
             var age = (parseInt(n) - parseInt(arrAge[2]))
+             
+            if(!result.location){
+              locationCity = 'sin locación'  
+            }else{
+              locationCity = result.location.name
+            }
+
             data = {
                 email: ""+result.email+"",
                 idUserFacebook:""+response.authResponse.userID+"",
                 name: ""+result.name+"",
                 age: ""+age+"",
                 gender: ""+result.gender+"",
-                locations: ""+result.location.name+"",
+                locations: ""+locationCity+"",
             }
+
             axios.post('http://165.227.111.118/api/user/createUserApp', data)
             .then(function (response) {
                 btnLogin.style.display = 'none'

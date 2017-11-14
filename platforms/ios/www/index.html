@@ -63,16 +63,20 @@
 	</div>
 	
 	<section id="login">
-      <div class="row">
-					<div class="col-12" align="center">
-						<img src="images/logo_quehacerhoy.png" style="max-width: 60%;">
-					</div>
+		<div class="row">
+			<div class="col-12" align="center">
+				<img src="images/logo_quehacerhoy.png" style="max-width: 60%;">
 			</div>
-			<form class="form-signin">
-				<button id="login_facebook" class="waves-effect btn color-face" type="submit">
-					Facebook
-				</button>
-			</form>
+		</div>
+		<form class="form-signin">
+			<button id="login_facebook" class="waves-effect btn color-face" type="submit">
+				Facebook
+			</button>
+		</form>
+	</section>
+
+	<section id="recomendaciones">
+		
 	</section>
 
 	<section id="app">
@@ -103,6 +107,7 @@
 				<div class="mdl-layout__drawer">
 					<span class="mdl-layout-title"><i class="fa fa-cogs" aria-hidden="true">&nbsp; &nbsp;</i>Settings</span>
 						<nav class="mdl-navigation">
+						<!--
 							<div class="settings">
 								<p> Activar GPS &nbsp;&nbsp; &nbsp;
 									<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
@@ -119,8 +124,9 @@
 									</label>
 								</p>
 							</div>
+						-->
 							<hr> 
-							<a class="mdl-navigation__link" href="sugerencias.html">
+							<a class="mdl-navigation__link" id="btnSugerencias">
 								<i class="material-icons">send</i>
 								&nbsp; &nbsp;Enviar Sugerencias
 							</a>
@@ -151,7 +157,7 @@
 									<div class="input-field">
 										<input id="search" type="search" required style="font-size: 16px">
 										<label class="label-icon" for="search"><i class="material-icons">search</i></label>
-										<i class="material-icons">close</i>
+										<i class="material-icons" id="cleanInput">close</i>
 									</div>
 								</form>
 							</div>

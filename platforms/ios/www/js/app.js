@@ -1,79 +1,103 @@
-var btnLogin = document.getElementById('login');
- var db = null
-var app = {
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
-    onDeviceReady: function() {
-        this.isLogin();
-    },
-    isLogin: function() {
-        facebookConnectPlugin.getLoginStatus( function (response) {
-            if(response.status == 'connected'){
-               btnLogin.style.display = 'none'
-  
-                document.addEventListener("offline", onOffline, false);
-                document.addEventListener("online", onOnline, false);
+var btnLogin = document.getElementById('login')
+var db = null
+var idFacebook = null
+var idUser = null
+var categories = null 
+var templateCategory = Handlebars.templates['category']
+var categoryElement = document.getElementById('category')
+var templateRecomendaciones = Handlebars.templates['recomendacion']
+var btnSugerencias = document.getElementById('btnSugerencias')
+var recomendaciones = document.getElementById('recomendaciones')
+var cleanInput = document.getElementById('cleanInput')
+var publicidadConten = document.getElementById('publicidad')
 
-            }
-        })
-    },
+var app = {
+  initialize: function() {
+    document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+  },
+  onDeviceReady: function() {
+    this.isLogin();
+  },
+  isLogin: function() {
+    facebookConnectPlugin.getLoginStatus( function (response) {
+      if(response.status == 'connected'){
+        btnLogin.style.display = 'none'
+          idFacebook = response.authResponse.userID 
+      }
+    })
+  },
 };
 app.initialize();
 
 facebook_btn = document.getElementById('login_facebook');
 
 facebook_btn.addEventListener("click", function login(e) {
-    e.preventDefault()
-    facebookConnectPlugin.login(["email", "public_profile", "user_birthday", "user_location"], function (userData){
-        window.plugins.toast.show('Login in', 'short', 'center')
-        details()
-        },
-        function loginError(err) {
-            window.plugins.toast.show('Error de login' + err, 'short', 'center')
-        }
-    )
+  e.preventDefault()
+  e.stopImmediatePropagation()
+  facebookConnectPlugin.login(["email", "public_profile", "user_birthday", "user_location"], function (userData){
+    window.plugins.toast.show('Login in', 'short', 'center')
+    details()
+    },
+    function loginError(err) {
+        window.plugins.toast.show('Error de login' + err, 'short', 'center')
+    }
+  )
 })
 
 function details(e) {
-    facebookConnectPlugin.getLoginStatus( function log(response) {
-        if(response.status == 'connected') {
-            facebookConnectPlugin.api('/' + response.authResponse.userID + '?fields=id,name,email,location,birthday,gender',[],
-                function onSuccess (result) {
-                    var d = new Date();
-                    var n = d.getFullYear();
-                    var ageRest = result.birthday
-                    var arrAge = ageRest.split('/')
-                    var age = (parseInt(n) - parseInt(arrAge[2]))
-                    data = {
-                        email: ""+result.email+"",
-                        name: ""+result.name+"",
-                        age: ""+age+"",
-                        gender: ""+result.gender+"",
-                        locations: ""+result.location.name+""
-                    }
-                    axios.post('http://165.227.111.118/api/user/createUserApp', data)
-                    .then(function (response) {
-                        btnLogin.style.display = 'none'
-                          document.addEventListener("offline", onOffline, false);
-                          document.addEventListener("online", onOnline, false);
+  facebookConnectPlugin.getLoginStatus( function log(response) {
+    if(response.status == 'connected') {
+        facebookConnectPlugin.api('/' + response.authResponse.userID + '?fields=id,name,email,location,birthday,gender',[],
+          function onSuccess (result) {
+            
+            var d = new Date();
+            var n = d.getFullYear();
+            var ageRest = result.birthday
+            var arrAge = ageRest.split('/')
+            var age = (parseInt(n) - parseInt(arrAge[2]))
+             
+            if(!result.location){
+              locationCity = 'sin locación'  
+            }else{
+              locationCity = result.location.name
+            }
 
-                    })
-                    .catch(function (error) {
-                        window.plugins.toast.show('Error de conexión', 'short', 'center')
-                    });
-                },
-                function onError(error) {
-                    alert(JSON.stringify(error))
-                }
-            )
+            alert(locationCity)
+
+
+            data = {
+                email: ""+result.email+"",
+                idUserFacebook:""+response.authResponse.userID+"",
+                name: ""+result.name+"",
+                age: ""+age+"",
+                gender: ""+result.gender+"",
+                locations: ""+locationCity+"",
+            }
+            
+            alert(JSON.stringify(data))
+
+            axios.post('http://165.227.111.118/api/user/createUserApp', data)
+            .then(function (response) {
+                btnLogin.style.display = 'none'
+                idFacebook = response.idFacebook
+            })
+            .catch(function (error) {
+                window.plugins.toast.show('Error de conexión', 'short', 'center')
+            });
+        },
+        function onError(error) {
+            alert(JSON.stringify(error))
         }
-        else {
-            window.plugins.toast.show('No logueado', 'short', 'center')
-        }
-    })
+      )
+    }
+    else {
+      window.plugins.toast.show('No logueado', 'short', 'center')
+    }
+  })
 }
 
+  document.addEventListener("offline", onOffline, false);
+  document.addEventListener("online", onOnline, false);
 
   function onOffline () {
     callDB()
@@ -103,16 +127,11 @@ function details(e) {
     getCategory()
   }
 
-  function getCategory(){
-
-    var templateCategory = Handlebars.templates['category'];
-
+  function getCategory() {
     axios.get('http://165.227.111.118/api/user/getCategorias')
       .then(function (res){
-        document.getElementById('category').innerHTML = templateCategory(res) 
-      })
-      .catch(function (err){
-
+        categories = res.data
+        categoryElement.innerHTML = templateCategory(res) 
       })
   }
 
@@ -132,7 +151,7 @@ function details(e) {
   function insertDB(tx) {
     axios.get('http://165.227.111.118/api/user/getPublicidads')
       .then( function (res)  {
-        let rest = res.data
+        var rest = res.data
         rest.forEach(function(el) {
           db.transaction(function(tx) {
 
@@ -193,11 +212,25 @@ function details(e) {
     });
   }
 
-  var publicidadConten = document.getElementById('publicidad');
-
   function renderPublicidad(id){
+    axios.get('http://165.227.111.118/api/user/searchUserAppsForFacebook/'+idFacebook)
+      .then( function(res) {
+        idUser = res.data.id
+        publicidadInteres(idUser)
+      })
+
+      function publicidadInteres(idUser){
+          data = {
+            'user_aplication_id': idUser,
+            'publicidad_id': id,
+          }
+
+          axios.post('http://165.227.111.118/api/user/createPublicidadInterest', data)
+            .then(function (res) { })
+      }
+
     axios.get('http://165.227.111.118/api/user/searchPublicidad'+ '/'+id)
-      .then(res =>{
+      .then( function (res) {
 
         publicidadConten.style.left = 0      
 
@@ -244,3 +277,69 @@ function details(e) {
     var t = url.split("../");
     return "http://165.227.111.118/" + t[2];
   });
+
+const inputFilter = document.getElementById('search')  
+
+function filtrarCategoria(obj, fil) {
+  return obj.filter( function(obj) {
+    return Object.keys(fil).every( function(a) {
+      return obj[a].toLowerCase().indexOf(fil[a].toLowerCase()) > -1;
+    });
+  });
+}
+
+inputFilter.addEventListener("keyup", function (e, i) {
+  var cat_json = JSON.stringify(categories)
+  var category = filtrarCategoria( JSON.parse(cat_json), {name:  inputFilter.value }) 
+  data = {
+    data: category
+  }
+  categoryElement.innerHTML = templateCategory(data) 
+})
+
+
+cleanInput.addEventListener("click", function () {
+  inputFilter.value = ''
+  data = {
+    data: categories
+  }
+  categoryElement.innerHTML = templateCategory(data) 
+})
+
+btnSugerencias.addEventListener("click", function (e) {
+  e.preventDefault()
+  e.stopImmediatePropagation()
+
+  recomendaciones.innerHTML = templateRecomendaciones()
+
+  recomendaciones.style.left = 0 
+  recomendaciones.style.height = '100%'
+  
+})
+
+  function closeRecomendacion(e) {
+    recomendaciones.style.left = '100%'
+    recomendaciones.style.height = 'auto'
+    recomendaciones.innerHTML = ''
+  }
+
+  function sendComentario (e) {
+    var asunto = document.getElementById('asunto')
+    var comentarios = document.getElementById('comentarios')
+
+    data = {
+      asunto: asunto.value,
+      mensaje: comentarios.value
+    }
+
+    if(asunto.value !== '' && comentarios.value !== ''){
+      axios.post('http://165.227.111.118/api/user/createSugerencia', data)
+      .then( function(res){
+          window.plugins.toast.show('Gracias por su comentario', 'short', 'center')
+          asunto.value = ''
+          comentarios.value = ''
+      })
+    }else{
+      window.plugins.toast.show('Favor de llenar todos los campos', 'short', 'center')
+    }
+  }

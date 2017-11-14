@@ -49,11 +49,13 @@ function details(e) {
     if(response.status == 'connected') {
         facebookConnectPlugin.api('/' + response.authResponse.userID + '?fields=id,name,email,location,birthday,gender',[],
           function onSuccess (result) {
+            alert(JSON.stringify(result))
             var d = new Date();
             var n = d.getFullYear();
             var ageRest = result.birthday
             var arrAge = ageRest.split('/')
             var age = (parseInt(n) - parseInt(arrAge[2]))
+            
             data = {
                 email: ""+result.email+"",
                 idUserFacebook:""+response.authResponse.userID+"",
@@ -62,6 +64,7 @@ function details(e) {
                 gender: ""+result.gender+"",
                 locations: ""+result.location.name+"",
             }
+              alert(JSON.stringify(data))
             axios.post('http://165.227.111.118/api/user/createUserApp', data)
             .then(function (response) {
                 btnLogin.style.display = 'none'

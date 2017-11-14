@@ -5,7 +5,8 @@ html, body {
 	flex-wrap: wrap;
 	width: 100%;
 	margin: 0px;
-	padding: 0px
+	padding: 0px;
+	overflow-x: hidden;
 }
 
 section#login {
@@ -146,7 +147,7 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 	margin-bottom: 0 !important; 
 	border: 0px !important;
 }
-#publicidad{
+#publicidad, #recomendaciones{
 	height: auto;
 	left: 100%;
 	width: 100%;
@@ -154,7 +155,6 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 	position: absolute;
 	z-index: 999;
 }
-
 
 /*  Template */
 
