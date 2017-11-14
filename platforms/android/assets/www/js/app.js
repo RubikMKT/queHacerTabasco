@@ -301,14 +301,17 @@ btnSugerencias.addEventListener("click", function (e) {
   recomendaciones.innerHTML = templateRecomendaciones()
 
   recomendaciones.style.left = 0 
+  recomendaciones.style.height = '100%'
   
 })
 
   function closeRecomendacion(e) {
     recomendaciones.style.left = '100%'
+    recomendaciones.style.height = 'auto'
     recomendaciones.innerHTML = ''
   }
 
   sendComentario.addEventListener("click", function () {
-    
+  //  asunto
+  //  mensaje
   })
