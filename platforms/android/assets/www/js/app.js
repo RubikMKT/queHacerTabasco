@@ -4,6 +4,13 @@ var idFacebook = null;
 var idUser = null;
 var categories = null 
 var templateCategory = Handlebars.templates['category'];
+var categoryElement = document.getElementById('category')
+var templateRecomendaciones = Handlebars.templates['recomendacion'];
+var btnSugerencias = document.getElementById('btnSugerencias')
+var recomendaciones = document.getElementById('recomendaciones');
+var cleanInput = document.getElementById('cleanInput')
+var publicidadConten = document.getElementById('publicidad');
+var sendComentario = document.getElementById('sendComentario')
 
 var app = {
   initialize: function() {
@@ -112,7 +119,7 @@ function details(e) {
     axios.get('http://165.227.111.118/api/user/getCategorias')
       .then(function (res){
         categories = res.data
-        document.getElementById('category').innerHTML = templateCategory(res) 
+        categoryElement.innerHTML = templateCategory(res) 
       })
   }
 
@@ -192,8 +199,6 @@ function details(e) {
       });
     });
   }
-
-  var publicidadConten = document.getElementById('publicidad');
 
   function renderPublicidad(id){
     axios.get('http://165.227.111.118/api/user/searchUserAppsForFacebook/'+idFacebook)
@@ -277,15 +282,33 @@ inputFilter.addEventListener("keyup", function (e, i) {
   data = {
     data: category
   }
-  document.getElementById('category').innerHTML = templateCategory(data) 
+  categoryElement.innerHTML = templateCategory(data) 
 })
 
-var cleanInput = document.getElementById('cleanInput')
 
 cleanInput.addEventListener("click", function () {
   inputFilter.value = ''
   data = {
     data: categories
   }
-  document.getElementById('category').innerHTML = templateCategory(data) 
+  categoryElement.innerHTML = templateCategory(data) 
 })
+
+btnSugerencias.addEventListener("click", function (e) {
+  e.preventDefault()
+  e.stopImmediatePropagation()
+
+  recomendaciones.innerHTML = templateRecomendaciones()
+
+  recomendaciones.style.left = 0 
+  
+})
+
+  function closeRecomendacion(e) {
+    recomendaciones.style.left = '100%'
+    recomendaciones.innerHTML = ''
+  }
+
+  sendComentario.addEventListener("click", function () {
+    
+  })
