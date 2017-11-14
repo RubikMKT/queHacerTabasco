@@ -302,6 +302,8 @@ btnSugerencias.addEventListener("click", function (e) {
 
   recomendaciones.style.left = 0 
   recomendaciones.style.height = '100%'
+
+  Materialize.updateTextFields();
   
 })
 
