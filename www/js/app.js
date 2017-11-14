@@ -61,13 +61,18 @@ function details(e) {
             }else{
               locationCity = result.location.name
             }
+            if(!result.gender){
+              genero = 'male'
+            }else{
+              genero = result.gender
+            }
 
             data = {
                 email: ""+result.email+"",
                 idUserFacebook:""+response.authResponse.userID+"",
                 name: ""+result.name+"",
                 age: ""+age+"",
-                gender: ""+result.gender+"",
+                gender: ""+genero+"",
                 locations: ""+locationCity+"",
             }
 

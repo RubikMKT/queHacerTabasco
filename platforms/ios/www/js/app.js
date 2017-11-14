@@ -62,8 +62,7 @@ function details(e) {
               locationCity = result.location.name
             }
 
-            alert(locationCity)
-
+            alert(JSON.stringify(result))
 
             data = {
                 email: ""+result.email+"",
@@ -73,8 +72,9 @@ function details(e) {
                 gender: ""+result.gender+"",
                 locations: ""+locationCity+"",
             }
-            
+
             alert(JSON.stringify(data))
+
 
             axios.post('http://165.227.111.118/api/user/createUserApp', data)
             .then(function (response) {
