@@ -10,6 +10,8 @@ var btnSugerencias = document.getElementById('btnSugerencias')
 var recomendaciones = document.getElementById('recomendaciones')
 var cleanInput = document.getElementById('cleanInput')
 var publicidadConten = document.getElementById('publicidad')
+var templateListPubCategory = Handlebars.templates['listPublicidadCategory']
+var contentListPubCategory = document.getElementById('lisPubCategory');
 
 var app = {
   initialize: function() {
@@ -61,20 +63,20 @@ function details(e) {
             }else{
               locationCity = result.location.name
             }
-
-            alert(JSON.stringify(result))
+            if(!result.gender){
+              genero = 'male'
+            }else{
+              genero = result.gender
+            }
 
             data = {
                 email: ""+result.email+"",
                 idUserFacebook:""+response.authResponse.userID+"",
                 name: ""+result.name+"",
                 age: ""+age+"",
-                gender: ""+result.gender+"",
+                gender: ""+genero+"",
                 locations: ""+locationCity+"",
             }
-
-            alert(JSON.stringify(data))
-
 
             axios.post('http://165.227.111.118/api/user/createUserApp', data)
             .then(function (response) {
@@ -86,7 +88,7 @@ function details(e) {
             });
         },
         function onError(error) {
-            alert(JSON.stringify(error))
+            
         }
       )
     }
@@ -254,7 +256,16 @@ function details(e) {
   }
 
   function listPubCat (id) {
-    alert(id)
+    axios.get('http://165.227.111.118/api/user/getPublicidadForCategory'+ '/'+id)
+      .then( function (res) {
+        contentListPubCategory.style.left = 0 
+        contentListPubCategory.innerHTML = templateListPubCategory(res)
+      })
+  }
+  
+  function closeListPubCategory() {
+    contentListPubCategory.innerHTML = ''
+    contentListPubCategory.style.left = '100%'
   }
 
   function closePublicidad(e) {

@@ -147,7 +147,7 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 	margin-bottom: 0 !important; 
 	border: 0px !important;
 }
-#publicidad, #recomendaciones{
+#publicidad, #recomendaciones, #lisPubCategory{
 	height: auto;
 	left: 100%;
 	width: 100%;

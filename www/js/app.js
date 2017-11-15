@@ -10,6 +10,8 @@ var btnSugerencias = document.getElementById('btnSugerencias')
 var recomendaciones = document.getElementById('recomendaciones')
 var cleanInput = document.getElementById('cleanInput')
 var publicidadConten = document.getElementById('publicidad')
+var templateListPubCategory = Handlebars.templates['listPublicidadCategory']
+var contentListPubCategory = document.getElementById('lisPubCategory');
 
 var app = {
   initialize: function() {
@@ -86,7 +88,7 @@ function details(e) {
             });
         },
         function onError(error) {
-            alert(JSON.stringify(error))
+            
         }
       )
     }
@@ -254,7 +256,16 @@ function details(e) {
   }
 
   function listPubCat (id) {
-    alert(id)
+    axios.get('http://165.227.111.118/api/user/getPublicidadForCategory'+ '/'+id)
+      .then( function (res) {
+        contentListPubCategory.style.left = 0 
+        contentListPubCategory.innerHTML = templateListPubCategory(res)
+      })
+  }
+  
+  function closeListPubCategory() {
+    contentListPubCategory.innerHTML = ''
+    contentListPubCategory.style.left = '100%'
   }
 
   function closePublicidad(e) {

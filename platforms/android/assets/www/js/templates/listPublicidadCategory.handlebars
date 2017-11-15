@@ -1,0 +1,32 @@
+<!-- Simple header with fixed tabs. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs" >
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row marg-head">
+        <!-- Colored FAB button with ripple -->
+        <button class="mdl-button mdl-js-button mdl-button--icon">
+          <a onclick="closeListPubCategory()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+        </button>
+        <div class="col-12">
+          <img src="images/logo_quehacerhoy.png" style="max-width: 30%; margin-left: 120px;">
+        </div>
+      </div>
+    </header>
+
+    {{#each data}}
+      <div class="col s12 m7">
+        <div class="card horizontal" onclick="renderPublicidad({{id}})">
+          <div class="card-image">
+            <img src="{{ splitUrl this.cliente.imagen  }}">
+            <p></p>
+          </div>
+          <div class="card-stacked">
+            <div class="card-content" >
+                <p class="nombre-black"> {{ name }}</p>
+                  <i><p>{{ ubicacion }}</p></i>
+                <p>{{ resena }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
