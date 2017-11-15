@@ -12,6 +12,9 @@ var cleanInput = document.getElementById('cleanInput')
 var publicidadConten = document.getElementById('publicidad')
 var templateListPubCategory = Handlebars.templates['listPublicidadCategory']
 var contentListPubCategory = document.getElementById('lisPubCategory');
+var facebook_btn = document.getElementById('login_facebook');
+var inputFilter = document.getElementById('search')  
+var templatePublicidad = Handlebars.templates['publicidad']
 
 var app = {
   initialize: function() {
@@ -31,8 +34,6 @@ var app = {
 };
 app.initialize();
 
-facebook_btn = document.getElementById('login_facebook');
-
 facebook_btn.addEventListener("click", function login(e) {
   e.preventDefault()
   e.stopImmediatePropagation()
@@ -51,18 +52,25 @@ function details(e) {
     if(response.status == 'connected') {
         facebookConnectPlugin.api('/' + response.authResponse.userID + '?fields=id,name,email,location,birthday,gender',[],
           function onSuccess (result) {
+
+            var age = null;
+            if(!result.birthday){
+              age = '18'
+            } else {
+              var d = new Date();
+              var n = d.getFullYear();
+              var ageRest = result.birthday
+              var arrAge = ageRest.split('/')
+              age = (parseInt(n) - parseInt(arrAge[2]))
+            }
+
             
-            var d = new Date();
-            var n = d.getFullYear();
-            var ageRest = result.birthday
-            var arrAge = ageRest.split('/')
-            var age = (parseInt(n) - parseInt(arrAge[2]))
-             
             if(!result.location){
               locationCity = 'sin locación'  
             }else{
               locationCity = result.location.name
             }
+
             if(!result.gender){
               genero = 'male'
             }else{
@@ -77,6 +85,7 @@ function details(e) {
                 gender: ""+genero+"",
                 locations: ""+locationCity+"",
             }
+              alert(JSON.stringify(data))
 
             axios.post('http://165.227.111.118/api/user/createUserApp', data)
             .then(function (response) {
@@ -235,8 +244,6 @@ function details(e) {
       .then( function (res) {
 
         publicidadConten.style.left = 0      
-
-        templatePublicidad = Handlebars.templates['publicidad']
         publicidadConten.innerHTML = templatePublicidad(res) 
 
         initialize(res.data.mapaLat, res.data.mapaLng)
@@ -251,7 +258,6 @@ function details(e) {
           auto:true,
           speed:400
         });
-       
       })
   }
 
@@ -259,12 +265,14 @@ function details(e) {
     axios.get('http://165.227.111.118/api/user/getPublicidadForCategory'+ '/'+id)
       .then( function (res) {
         contentListPubCategory.style.left = 0 
+        contentListPubCategory.style.height = '100%'
         contentListPubCategory.innerHTML = templateListPubCategory(res)
       })
   }
   
   function closeListPubCategory() {
     contentListPubCategory.innerHTML = ''
+    contentListPubCategory.style.height = 'auto'
     contentListPubCategory.style.left = '100%'
   }
 
@@ -288,8 +296,6 @@ function details(e) {
     var t = url.split("../");
     return "http://165.227.111.118/" + t[2];
   });
-
-const inputFilter = document.getElementById('search')  
 
 function filtrarCategoria(obj, fil) {
   return obj.filter( function(obj) {
@@ -346,9 +352,9 @@ btnSugerencias.addEventListener("click", function (e) {
     if(asunto.value !== '' && comentarios.value !== ''){
       axios.post('http://165.227.111.118/api/user/createSugerencia', data)
       .then( function(res){
-          window.plugins.toast.show('Gracias por su comentario', 'short', 'center')
-          asunto.value = ''
-          comentarios.value = ''
+        window.plugins.toast.show('Gracias por su comentario', 'short', 'center')
+        asunto.value = ''
+        comentarios.value = ''
       })
     }else{
       window.plugins.toast.show('Favor de llenar todos los campos', 'short', 'center')
