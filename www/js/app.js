@@ -85,7 +85,6 @@ function details(e) {
                 gender: ""+genero+"",
                 locations: ""+locationCity+"",
             }
-              alert(JSON.stringify(data))
 
             axios.post('http://165.227.111.118/api/user/createUserApp', data)
             .then(function (response) {
