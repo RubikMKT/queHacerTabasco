@@ -3,6 +3,7 @@ var db = null
 var idFacebook = null
 var idUser = null
 var categories = null 
+var loadsec = document.getElementById('load')
 var templateCategory = Handlebars.templates['category']
 var categoryElement = document.getElementById('category')
 var templateRecomendaciones = Handlebars.templates['recomendacion']
@@ -85,7 +86,6 @@ function details(e) {
                 gender: ""+genero+"",
                 locations: ""+locationCity+"",
             }
-              alert(JSON.stringify(data))
 
             axios.post('http://165.227.111.118/api/user/createUserApp', data)
             .then(function (response) {
@@ -224,6 +224,7 @@ function details(e) {
   }
 
   function renderPublicidad(id){
+    loadsec.style.display = "flex";
     axios.get('http://165.227.111.118/api/user/searchUserAppsForFacebook/'+idFacebook)
       .then( function(res) {
         idUser = res.data.id
@@ -242,6 +243,8 @@ function details(e) {
 
     axios.get('http://165.227.111.118/api/user/searchPublicidad'+ '/'+id)
       .then( function (res) {
+
+        loadsec.style.display = 'none'
 
         publicidadConten.style.left = 0      
         publicidadConten.innerHTML = templatePublicidad(res) 
@@ -262,8 +265,10 @@ function details(e) {
   }
 
   function listPubCat (id) {
+    loadsec.style.display = 'flex'
     axios.get('http://165.227.111.118/api/user/getPublicidadForCategory'+ '/'+id)
       .then( function (res) {
+        loadsec.style.display = 'none'
         contentListPubCategory.style.left = 0 
         contentListPubCategory.style.height = '100%'
         contentListPubCategory.innerHTML = templateListPubCategory(res)
@@ -341,6 +346,7 @@ btnSugerencias.addEventListener("click", function (e) {
   }
 
   function sendComentario (e) {
+    loadsec.style.display = 'flex'
     var asunto = document.getElementById('asunto')
     var comentarios = document.getElementById('comentarios')
 
@@ -355,8 +361,13 @@ btnSugerencias.addEventListener("click", function (e) {
         window.plugins.toast.show('Gracias por su comentario', 'short', 'center')
         asunto.value = ''
         comentarios.value = ''
+        loadsec.style.display = 'none'
+      }).catch(function(res){
+        alert(JSON.stringify(res.error))
+        window.plugins.toast.show('Su comentario debe de tener menos de 190 caracteres', 'short', 'center')
       })
     }else{
+     loadsec.style.display = 'none'
       window.plugins.toast.show('Favor de llenar todos los campos', 'short', 'center')
     }
   }

@@ -147,13 +147,23 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 	margin-bottom: 0 !important; 
 	border: 0px !important;
 }
-#publicidad, #recomendaciones, #lisPubCategory{
+
+#publicidad, #recomendaciones, #lisPubCategory, #load{
 	height: auto;
 	left: 100%;
 	width: 100%;
 	background-color: white;
 	position: absolute;
 	z-index: 99999;
+}
+#load{
+	background-color: rgba(255, 255, 255, 0.8);
+	left: 0;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	display: none;
 }
 
 /*  Template */
