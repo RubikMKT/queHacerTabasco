@@ -363,7 +363,6 @@ btnSugerencias.addEventListener("click", function (e) {
         comentarios.value = ''
         loadsec.style.display = 'none'
       }).catch(function(res){
-        alert(JSON.stringify(res.error))
         window.plugins.toast.show('Su comentario debe de tener menos de 190 caracteres', 'short', 'center')
       })
     }else{
