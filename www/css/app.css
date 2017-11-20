@@ -148,7 +148,7 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 	border: 0px !important;
 }
 
-#publicidad, #recomendaciones, #lisPubCategory, #load{
+#publicidad, #recomendaciones, #lisPubCategory, #load, #conocenos, #terminos{
 	height: auto;
 	left: 100%;
 	width: 100%;
@@ -221,4 +221,21 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 
 .row.espacio {
 	margin-bottom: 0px !important;
+}
+.config {
+	font-size: 1.4em;
+}
+
+.mt-2{
+	margin-top: 2em;
+}
+
+.mt-4{
+	margin-top: 2em;
+}
+nav{
+	height: 50px;
+}
+nav .input-field label{
+	top: -11px;
 }

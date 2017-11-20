@@ -93,6 +93,10 @@
 
 	<section id="recomendaciones"></section>
 
+	<section id="conocenos"></section>
+
+	<section id="terminos"></section>
+
 	<section id="app">
 		<!-- APP -->
 		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
@@ -119,46 +123,39 @@
 				<!-- End Tabs -->
 			</header>
 				<div class="mdl-layout__drawer">
-					<span class="mdl-layout-title"><i class="fa fa-cogs" aria-hidden="true">&nbsp; &nbsp;</i>Configuración</span>
+					<span class="mdl-layout-title config"><i class="fa fa-cogs" aria-hidden="true">&nbsp; &nbsp;</i>Configuración</span>
 						<nav class="mdl-navigation">
-						<!--
-							<div class="settings">
-								<p> Activar GPS &nbsp;&nbsp; &nbsp;
-									<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-										<input type="checkbox" id="switch-1" class="mdl-switch__input">
-										<span class="mdl-switch__label"></span>
-									</label>
-								</p>
-							</div>
-							<div class="settings">
-								<p> Notificaciones&nbsp;
-									<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
-										<input type="checkbox" id="switch-2" class="mdl-switch__input">
-										<span class="mdl-switch__label"></span>
-									</label>
-								</p>
-							</div>
-						-->
 							<hr> 
 							<a class="mdl-navigation__link" id="btnSugerencias">
 								<i class="material-icons">send</i>
 								&nbsp; &nbsp;Enviar Sugerencias
 							</a>
 							<hr class="small-hr">
-							<a class="mdl-navigation__link" href="#">
+							<a class="mdl-navigation__link" id="btnConocenos" >
 								<i class="material-icons">account_circle</i>
-								&nbsp; &nbsp;Conocenos mas
+								&nbsp; &nbsp;Conócenos mas
 							</a>
 							<hr class="small-hr">
-							<a class="mdl-navigation__link" href="#">
+							<a class="mdl-navigation__link" id="btnTerminos">
 								<i class="material-icons">import_contacts</i>
-								&nbsp; &nbsp;Terminos y Politicas
+								&nbsp; &nbsp;Términos y Politicas
 							</a>
 						</nav>
 				</div>
 				<main class="mdl-layout__content">
 					<!-- Start Panel 1 -->
 					<section class="mdl-layout__tab-panel is-active" id="fixed-tab-1" style="margin-top: 5px">
+						<nav style="background-color: #4ec2bf;">
+							<div class="nav-wrapper">
+								<form>
+									<div class="input-field">
+										<input id="searchPub" type="search" required style="font-size: 16px">
+										<label class="label-icon" for="search"><i class="material-icons">search</i></label>
+										<i class="material-icons" id="cleanInputPub">close</i>
+									</div>
+								</form>
+							</div>
+						</nav>
 						<div id="listPub"></div>
 
 					</section>
