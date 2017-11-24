@@ -26,6 +26,8 @@ var searchPub = document.getElementById('searchPub')
 var cleanInputPub = document.getElementById('cleanInputPub')
 var jsonpub = null;
 var templateListPublicidad = Handlebars.templates['listPublicidad']
+var templateSliders = Handlebars.templates['slider'];
+var contentSlider = document.getElementById('sliderContent')
 
 var app = {
   initialize: function() {
@@ -255,7 +257,7 @@ function details(e) {
         loadsec.style.display = 'none'
 
         publicidadConten.style.left = 0      
-        publicidadConten.innerHTML = templatePublicidad(res) 
+        publicidadConten.innerHTML = templatePublicidad(res)
 
         initialize(res.data.mapaLat, res.data.mapaLng)
 
@@ -293,17 +295,6 @@ function details(e) {
     publicidadConten.style.left = '100%'
     publicidadConten.innerHTML = ''
   }
-
-  $('.bxslider').bxSlider({
-    mode: 'fade',
-    captions: false,
-    slideWidth: 1200,
-    responsive: true,
-    controls: false,
-    hideControlOnEnd: true,
-    auto:true,
-    speed:400
-  });
 
   Handlebars.registerHelper('splitUrl', function(url) {
     var t = url.split("../");
@@ -345,8 +336,6 @@ searchPub.addEventListener("keyup", function (e ,i) {
   }
   document.getElementById('listPub').innerHTML = templateListPublicidad(data) 
 })
-
-
 
 
 cleanInputPub.addEventListener("click", function() {
@@ -426,3 +415,20 @@ btnSugerencias.addEventListener("click", function (e) {
     contentTerminos.style.height = 'auto'
     contentTerminos.innerHTML = ''
   }
+
+  axios.get('http://165.227.111.118/api/user/getSliders')
+    .then( function (res) {
+        contentSlider.innerHTML = templateSliders(res)
+       
+        $('.bxslider').bxSlider({
+          mode: 'fade',
+          captions: false,
+          slideWidth: 1200,
+          responsive: true,
+          controls: false,
+          hideControlOnEnd: true,
+          auto:true,
+          speed:400
+        }); 
+    })
+

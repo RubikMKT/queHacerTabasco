@@ -71,16 +71,28 @@
                 <span class="title">
                   <table>
                     <tr>
-                      <td>Aire acondicionado</td>
-                      <td>Wi-Fi</td>
+                      {{#if data.clima }}
+                        <td>Aire acondicionado {{data.clima}}</td>
+                      {{/if}}
+                      {{#if data.wifi}}
+                        <td>Wi-Fi</td>
+                      {{/if}}
                     </tr>
                     <tr>
-                      <td>Estacionamiento</td>
-                      <td>Bar</td>
+                      {{#if data.estacionamiento}}
+                        <td>Estacionamiento {{ata.estacionamiento}}</td>
+                      {{/if}}
+                      {{#if data.bar}}
+                        <td>Bar {{data.bar}}</td>
+                      {{/if}}
                     </tr>
                     <tr>
-                      <td>Servicio a domicilio</td>
-                      <td>Musica en vivo</td>
+                      {{#if data.domicilio}}
+                        <td>Servicio a domicilio {{data.domicilio}}</td>
+                      {{/if}}
+                      {{#if data.musica}}
+                        <td>Musica en vivo {{data.musica}}</td>
+                      {{/if}}
                     </tr>
                   </table>
                 </span>

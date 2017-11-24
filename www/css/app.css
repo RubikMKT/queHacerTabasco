@@ -239,3 +239,9 @@ nav{
 nav .input-field label{
 	top: -11px;
 }
+.content-terminos h5{
+	text-align: center;
+}
+.content-terminos strong {
+	font-style: bold;
+}
