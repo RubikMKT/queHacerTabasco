@@ -39,6 +39,9 @@
         <div class="card-panel resena">
           <p>{{ data.resena }}</p>
         </div>
+        <div class="card-panel resena">
+          <p>{{ data.oferta }}</p>
+        </div>
       </div>
     </div>
       <!-- Tabla con informacion del sitio -->
@@ -71,16 +74,28 @@
                 <span class="title">
                   <table>
                     <tr>
-                      <td>Aire acondicionado</td>
-                      <td>Wi-Fi</td>
+                      {{#if data.clima }}
+                        <td>Aire acondicionado</td>
+                      {{/if}}
+                      {{#if data.wifi}}
+                        <td>Wi-Fi</td>
+                      {{/if}}
                     </tr>
                     <tr>
-                      <td>Estacionamiento</td>
-                      <td>Bar</td>
+                      {{#if data.estacionamiento}}
+                        <td>Estacionamiento</td>
+                      {{/if}}
+                      {{#if data.bar}}
+                        <td>Bar</td>
+                      {{/if}}
                     </tr>
                     <tr>
-                      <td>Servicio a domicilio</td>
-                      <td>Musica en vivo</td>
+                      {{#if data.domicilio}}
+                        <td>Servicio a domicilio</td>
+                      {{/if}}
+                      {{#if data.musica}}
+                        <td>Música en vivo</td>
+                      {{/if}}
                     </tr>
                   </table>
                 </span>

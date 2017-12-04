@@ -245,3 +245,18 @@ nav .input-field label{
 .content-terminos strong {
 	font-style: bold;
 }
+.toolbar{
+	width: 80%;
+}
+.toolbar a {
+	float: right;
+}
+.toolbar ul {
+	background-color:#f9a846;
+	width: 78%;
+	position: relative;
+	float: left;
+}
+.toolbar ul li {
+	text-align: center;
+}

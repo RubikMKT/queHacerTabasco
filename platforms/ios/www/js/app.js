@@ -16,6 +16,18 @@ var contentListPubCategory = document.getElementById('lisPubCategory');
 var facebook_btn = document.getElementById('login_facebook');
 var inputFilter = document.getElementById('search')  
 var templatePublicidad = Handlebars.templates['publicidad']
+var templateTerminos = Handlebars.templates['terminos']
+var templateConocenos = Handlebars.templates['conocenos']
+var btnConocenos = document.getElementById('btnConocenos')
+var btnTerminos = document.getElementById('btnTerminos')
+var contentConocenos = document.getElementById('conocenos')
+var contentTerminos = document.getElementById('terminos')
+var searchPub = document.getElementById('searchPub')
+var cleanInputPub = document.getElementById('cleanInputPub')
+var jsonpub = null;
+var templateListPublicidad = Handlebars.templates['listPublicidad']
+var templateSliders = Handlebars.templates['slider'];
+var contentSlider = document.getElementById('sliderContent')
 
 var app = {
   initialize: function() {
@@ -185,9 +197,8 @@ function details(e) {
 
   function queryDB() {
     db.transaction(function(tx) {
-      var templateListPublicidad = null
       tx.executeSql('SELECT * FROM PUBLICIDAD', [], function(tx, rs) {
-        var jsonpub = {
+        jsonpub = {
           "data":[]
         }
         var pubArray = []
@@ -213,7 +224,6 @@ function details(e) {
 
         $.extend(jsonpub.data, pubArray);
         
-        templateListPublicidad = Handlebars.templates['listPublicidad']
         document.getElementById('listPub').innerHTML = templateListPublicidad(jsonpub) 
       },
 
@@ -247,7 +257,7 @@ function details(e) {
         loadsec.style.display = 'none'
 
         publicidadConten.style.left = 0      
-        publicidadConten.innerHTML = templatePublicidad(res) 
+        publicidadConten.innerHTML = templatePublicidad(res)
 
         initialize(res.data.mapaLat, res.data.mapaLng)
 
@@ -286,17 +296,6 @@ function details(e) {
     publicidadConten.innerHTML = ''
   }
 
-  $('.bxslider').bxSlider({
-    mode: 'fade',
-    captions: false,
-    slideWidth: 1200,
-    responsive: true,
-    controls: false,
-    hideControlOnEnd: true,
-    auto:true,
-    speed:400
-  });
-
   Handlebars.registerHelper('splitUrl', function(url) {
     var t = url.split("../");
     return "http://165.227.111.118/" + t[2];
@@ -326,6 +325,22 @@ cleanInput.addEventListener("click", function () {
     data: categories
   }
   categoryElement.innerHTML = templateCategory(data) 
+})
+
+
+searchPub.addEventListener("keyup", function (e ,i) {
+  var pub_json = JSON.stringify(jsonpub.data)
+  var pub_searh = filtrarCategoria( JSON.parse(pub_json), {name:  searchPub.value }) 
+  var data = {
+    data: pub_searh
+  }
+  document.getElementById('listPub').innerHTML = templateListPublicidad(data) 
+})
+
+
+cleanInputPub.addEventListener("click", function() {
+  searchPub.value = ''
+  document.getElementById('listPub').innerHTML = templateListPublicidad(jsonpub) 
 })
 
 btnSugerencias.addEventListener("click", function (e) {
@@ -370,3 +385,50 @@ btnSugerencias.addEventListener("click", function (e) {
       window.plugins.toast.show('Favor de llenar todos los campos', 'short', 'center')
     }
   }
+
+  btnConocenos.addEventListener('click', function (e) {
+    e.preventDefault()
+    e.stopImmediatePropagation()
+
+    contentConocenos.innerHTML = templateConocenos()
+    contentConocenos.style.left = 0 
+    contentConocenos.style.height = '100%'
+  })
+
+  function closeConocenos(e) {
+    contentConocenos.style.left = '100%'
+    contentConocenos.style.height = 'auto'
+    contentConocenos.innerHTML = ''
+  }
+
+  btnTerminos.addEventListener('click', function(e) {
+    e.preventDefault()
+    e.stopPropagation()
+
+    contentTerminos.innerHTML = templateTerminos()
+    contentTerminos.style.left = 0
+    contentTerminos.style.height = '100%'
+  })
+
+  function closeTerminos() {
+    contentTerminos.style.left = '100%'
+    contentTerminos.style.height = 'auto'
+    contentTerminos.innerHTML = ''
+  }
+
+  axios.get('http://165.227.111.118/api/user/getSliders')
+    .then( function (res) {
+        contentSlider.innerHTML = templateSliders(res)
+       
+        $('.bxslider').bxSlider({
+          mode: 'fade',
+          captions: false,
+          slideWidth: 1200,
+          responsive: true,
+          controls: false,
+          hideControlOnEnd: true,
+          auto:true,
+          speed:400
+        }); 
+    })
+

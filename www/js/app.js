@@ -432,3 +432,37 @@ btnSugerencias.addEventListener("click", function (e) {
         }); 
     })
 
+var styleOpen = {
+    'transform': 'scaleY(1) scaleX(1) translateY(0px) translateX(0px)',
+    'opacity': '1'
+  }
+
+var styleClose = {
+  'transform': 'transform: scaleY(0.4) scaleX(0.4) translateY(0px) translateX(40px)',
+  'opacity': '0'
+}
+
+function alerta () {
+  var toobar = $('.toolbar')
+  var btns = $('.btn_send_p')
+
+  toobar.toggleClass('active');
+    if(toobar.hasClass('active')){
+      btns.css(styleOpen) 
+    }else{
+        btns.css(styleClose)
+    }
+}
+
+function share (a, b) {
+  facebookConnectPlugin.showDialog({
+    method: "share",
+    href:b,
+    hashtag: '#myHashtag',
+    quote: a,
+    mobile_iframe: true,
+    picture:b,
+    share_feedWeb: true, // iOS only
+  });
+}
+

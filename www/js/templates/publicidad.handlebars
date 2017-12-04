@@ -102,20 +102,17 @@
             </li>
           </ul>
       </div>
+      </div>
     </div>
   </div>
-    <div class="col s12">
-      <!--
-      <div class="fixed-action-btn toolbar">
-        <a class="btn-floating btn-large orange" style="opacity: 0.9;">
-          <img src="images/iconqht.png" alt="" style="margin: 17%" align="center" width="60%" height="auto">
-        </a>
-        <ul>
-          <li class="waves-effect waves-light"><a href="#!"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-          <li class="waves-effect waves-light"><a href="#!"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></a></li>
-        </ul>
-      </div>
-      -->
+  <div>
+    <div class="fixed-action-btn toolbar">
+      <a class="btn-floating btn-large orange click-to-toggle" onclick="alerta()" style="opacity: 0.9;">
+        <img src="images/iconqht.png" alt="" style="margin: 17%" align="center" width="60%" height="auto">
+      </a>
+      <ul>
+        <li class="waves-effect waves-light"><a class="btn_send_p" onclick="share( '{{ data.cliente.empresa }}', '{{splitUrl this.data.cliente.imagen}}')" ><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+      </ul>
     </div>
   </div>
   <footer id="map" style="align-self: flex-end; width: 100%; height: 350px;"></footer>
