@@ -28,6 +28,9 @@ var jsonpub = null;
 var templateListPublicidad = Handlebars.templates['listPublicidad']
 var templateSliders = Handlebars.templates['slider'];
 var contentSlider = document.getElementById('sliderContent')
+var templateLoginquehacer = Handlebars.templates['loginquehacer'];
+var loginquehacer = document.getElementById('loginquehacer')
+var login_quehacer = document.getElementById('login_quehacer') 
 
 var app = {
   initialize: function() {
@@ -442,7 +445,7 @@ var styleClose = {
   'opacity': '0'
 }
 
-function alerta () {
+function shareBtb () {
   var toobar = $('.toolbar')
   var btns = $('.btn_send_p')
 
@@ -466,3 +469,51 @@ function share (a, b) {
   });
 }
 
+login_quehacer.addEventListener('click', function (a) {
+  a.preventDefault()
+  loginquehacer.style.display = 'block'
+  loginquehacer.innerHTML = templateLoginquehacer()
+})
+
+function closeLoginquehacer(e) {
+  loginquehacer.style.display = 'none'
+  loginquehacer.innerHTML = ''
+}
+
+function sendFormulario(){
+
+
+  var nombre = document.getElementById('nombre').value
+  var apellidos = document.getElementById('apellidos').value
+  var edad = document.getElementById('edad').value
+  var sexo = document.getElementById('sexo').value
+  var nacionalidad = document.getElementById('nacionalidad').value
+  var correo = document.getElementById('correo').value
+
+  var id = Math.random().toString(36).slice(2);
+
+  console.log(id)
+
+  data = {
+    email: correo,
+    idUserFacebook: id,
+    name: nombre + ' ' +apellidos,
+    age: edad,
+    gender: sexo,
+    locations: nacionalidad,
+  }
+
+  axios.post('http://165.227.111.118/api/user/createUserApp', data)
+  .then(function (response) {
+      btnLogin.style.display = 'none'
+      idFacebook = response.idFacebook
+
+      btnLogin.style.display = 'none'
+      loginquehacer.style.display = 'none'
+      loginquehacer.innerHTML = ''
+
+  })
+  .catch(function (error) {
+      window.plugins.toast.show('Error de conexión', 'short', 'center')
+  });
+}
