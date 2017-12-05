@@ -40,6 +40,10 @@ var app = {
     this.isLogin();
   },
   isLogin: function() {
+
+    var value = window.localStorage.getItem("user");
+    alert(value)
+
     facebookConnectPlugin.getLoginStatus( function (response) {
       if(response.status == 'connected'){
         btnLogin.style.display = 'none'
@@ -492,8 +496,6 @@ function sendFormulario(){
 
   var id = Math.random().toString(36).slice(2);
 
-  console.log(id)
-
   data = {
     email: correo,
     idUserFacebook: id,
@@ -507,6 +509,11 @@ function sendFormulario(){
   .then(function (response) {
       btnLogin.style.display = 'none'
       idFacebook = response.idFacebook
+
+      window.localStorage.setItem("user", idFacebook);
+
+      var value = window.localStorage.getItem("user");
+      alert(value)
 
       btnLogin.style.display = 'none'
       loginquehacer.style.display = 'none'
