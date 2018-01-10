@@ -24,11 +24,11 @@ var contentConocenos = document.getElementById('conocenos')
 var contentTerminos = document.getElementById('terminos')
 var searchPub = document.getElementById('searchPub')
 var cleanInputPub = document.getElementById('cleanInputPub')
-var jsonpub = null;
+var jsonpub = null
 var templateListPublicidad = Handlebars.templates['listPublicidad']
-var templateSliders = Handlebars.templates['slider'];
+var templateSliders = Handlebars.templates['slider']
 var contentSlider = document.getElementById('sliderContent')
-var templateLoginquehacer = Handlebars.templates['loginquehacer'];
+var templateLoginquehacer = Handlebars.templates['loginquehacer']
 var loginquehacer = document.getElementById('loginquehacer')
 var login_quehacer = document.getElementById('login_quehacer') 
 
@@ -41,11 +41,9 @@ var app = {
   },
   isLogin: function() {
 
-    var value = window.localStorage.getItem("user");
-    alert(value)
-
+     var value = window.localStorage.getItem("id")
     facebookConnectPlugin.getLoginStatus( function (response) {
-      if(response.status == 'connected'){
+      if(response.status == 'connected' || value != null )  {
         btnLogin.style.display = 'none'
           idFacebook = response.authResponse.userID 
       }
@@ -57,7 +55,7 @@ app.initialize();
 facebook_btn.addEventListener("click", function login(e) {
   e.preventDefault()
   e.stopImmediatePropagation()
-  facebookConnectPlugin.login(["email", "public_profile", "user_birthday", "user_location"], function (userData){
+  facebookConnectPlugin.login(["email", "public_profile", "user_birthday", "user_location"], function (userData) {
     window.plugins.toast.show('Login in', 'short', 'center')
     details()
     },
@@ -188,7 +186,7 @@ function details(e) {
             tx.executeSql('INSERT OR REPLACE INTO PUBLICIDAD VALUES (?,?,?,?,?,?,?,?,?,?,?,?)', [ ''+el.id +'',''+el.cliente.empresa +'', ''+el.ubicacion+'', ''+el.resena+'', ''+el.categoria.name+'', ''+el.categoria.costo+'', ''+el.categoria.horario+'', ''+el.categoria.telefono+'', ''+el.cliente.imagen+'', ''+el.categoria.clima+'', ''+el.categoria.estacionamiento+'', ''+el.categoria.domicilio+'' ]);
 
           }, function (error) {
-            alert('Transaction ERROR: ' + error.message);
+            //alert('Transaction ERROR: ' + error.message);
             window.plugins.toast.show('Transaction ERROR', 'short', 'center')
           }, function () {
             db.transaction(queryDB)
@@ -197,7 +195,7 @@ function details(e) {
         })  
       })
       .catch( function () {
-            alert(error.message + 'error')
+            //alert(error.message + 'error')
             window.plugins.toast.show('Error', 'short', 'center')
       })
   }
@@ -484,8 +482,7 @@ function closeLoginquehacer(e) {
   loginquehacer.innerHTML = ''
 }
 
-function sendFormulario(){
-
+function sendFormulario() {
 
   var nombre = document.getElementById('nombre').value
   var apellidos = document.getElementById('apellidos').value
@@ -508,17 +505,10 @@ function sendFormulario(){
   axios.post('http://165.227.111.118/api/user/createUserApp', data)
   .then(function (response) {
       btnLogin.style.display = 'none'
-      idFacebook = response.idFacebook
-
-      window.localStorage.setItem("user", idFacebook);
-
-      var value = window.localStorage.getItem("user");
-      alert(value)
-
-      btnLogin.style.display = 'none'
+      idFacebook = response.data.idFacebook
+      window.localStorage.setItem("id", idFacebook)
+      var value = window.localStorage.getItem("id")
       loginquehacer.style.display = 'none'
-      loginquehacer.innerHTML = ''
-
   })
   .catch(function (error) {
       window.plugins.toast.show('Error de conexión', 'short', 'center')

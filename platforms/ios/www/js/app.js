@@ -24,10 +24,13 @@ var contentConocenos = document.getElementById('conocenos')
 var contentTerminos = document.getElementById('terminos')
 var searchPub = document.getElementById('searchPub')
 var cleanInputPub = document.getElementById('cleanInputPub')
-var jsonpub = null;
+var jsonpub = null
 var templateListPublicidad = Handlebars.templates['listPublicidad']
-var templateSliders = Handlebars.templates['slider'];
+var templateSliders = Handlebars.templates['slider']
 var contentSlider = document.getElementById('sliderContent')
+var templateLoginquehacer = Handlebars.templates['loginquehacer']
+var loginquehacer = document.getElementById('loginquehacer')
+var login_quehacer = document.getElementById('login_quehacer') 
 
 var app = {
   initialize: function() {
@@ -37,8 +40,11 @@ var app = {
     this.isLogin();
   },
   isLogin: function() {
+
+    var value = window.localStorage.getItem("user");
+
     facebookConnectPlugin.getLoginStatus( function (response) {
-      if(response.status == 'connected'){
+      if(response.status == 'connected') {
         btnLogin.style.display = 'none'
           idFacebook = response.authResponse.userID 
       }
@@ -50,7 +56,7 @@ app.initialize();
 facebook_btn.addEventListener("click", function login(e) {
   e.preventDefault()
   e.stopImmediatePropagation()
-  facebookConnectPlugin.login(["email", "public_profile", "user_birthday", "user_location"], function (userData){
+  facebookConnectPlugin.login(["email", "public_profile", "user_birthday", "user_location"], function (userData) {
     window.plugins.toast.show('Login in', 'short', 'center')
     details()
     },
@@ -181,7 +187,7 @@ function details(e) {
             tx.executeSql('INSERT OR REPLACE INTO PUBLICIDAD VALUES (?,?,?,?,?,?,?,?,?,?,?,?)', [ ''+el.id +'',''+el.cliente.empresa +'', ''+el.ubicacion+'', ''+el.resena+'', ''+el.categoria.name+'', ''+el.categoria.costo+'', ''+el.categoria.horario+'', ''+el.categoria.telefono+'', ''+el.cliente.imagen+'', ''+el.categoria.clima+'', ''+el.categoria.estacionamiento+'', ''+el.categoria.domicilio+'' ]);
 
           }, function (error) {
-            alert('Transaction ERROR: ' + error.message);
+            //alert('Transaction ERROR: ' + error.message);
             window.plugins.toast.show('Transaction ERROR', 'short', 'center')
           }, function () {
             db.transaction(queryDB)
@@ -190,7 +196,7 @@ function details(e) {
         })  
       })
       .catch( function () {
-            alert(error.message + 'error')
+            //alert(error.message + 'error')
             window.plugins.toast.show('Error', 'short', 'center')
       })
   }
@@ -432,3 +438,84 @@ btnSugerencias.addEventListener("click", function (e) {
         }); 
     })
 
+var styleOpen = {
+    'transform': 'scaleY(1) scaleX(1) translateY(0px) translateX(0px)',
+    'opacity': '1'
+  }
+
+var styleClose = {
+  'transform': 'transform: scaleY(0.4) scaleX(0.4) translateY(0px) translateX(40px)',
+  'opacity': '0'
+}
+
+function shareBtb () {
+  var toobar = $('.toolbar')
+  var btns = $('.btn_send_p')
+
+  toobar.toggleClass('active');
+    if(toobar.hasClass('active')){
+      btns.css(styleOpen) 
+    }else{
+        btns.css(styleClose)
+    }
+}
+
+function share (a, b) {
+  facebookConnectPlugin.showDialog({
+    method: "share",
+    href:b,
+    hashtag: '#myHashtag',
+    quote: a,
+    mobile_iframe: true,
+    picture:b,
+    share_feedWeb: true, // iOS only
+  });
+}
+
+login_quehacer.addEventListener('click', function (a) {
+  a.preventDefault()
+  loginquehacer.style.display = 'block'
+  loginquehacer.innerHTML = templateLoginquehacer()
+})
+
+function closeLoginquehacer(e) {
+  loginquehacer.style.display = 'none'
+  loginquehacer.innerHTML = ''
+}
+
+function sendFormulario() {
+
+  var nombre = document.getElementById('nombre').value
+  var apellidos = document.getElementById('apellidos').value
+  var edad = document.getElementById('edad').value
+  var sexo = document.getElementById('sexo').value
+  var nacionalidad = document.getElementById('nacionalidad').value
+  var correo = document.getElementById('correo').value
+
+  var id = Math.random().toString(36).slice(2);
+
+
+
+  data = {
+    email: correo,
+    idUserFacebook: id,
+    name: nombre + ' ' +apellidos,
+    age: edad,
+    gender: sexo,
+    locations: nacionalidad,
+  }
+
+  axios.post('http://165.227.111.118/api/user/createUserApp', data)
+  .then(function (response) {
+      btnLogin.style.display = 'none'
+      idFacebook = response.idFacebook
+      alert( JSON.stringify(response.idFacebook) )
+      window.localStorage.setItem("id", idFacebook)
+      var value = window.localStorage.getItem("id")
+
+      alert(value)
+  })
+  .catch(function (error) {
+      window.plugins.toast.show('Error de conexión', 'short', 'center')
+  });
+}

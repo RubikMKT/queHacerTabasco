@@ -13,12 +13,21 @@ section#login {
     height: 100%;
     width: 100%;
     position: absolute;
-    z-index: 999;
+    z-index: 9;
 		background-color: white;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+}
+
+section#loginquehacer {
+	height: 100%;
+	background-color: white;
+	width: 100%;
+	position: absolute;
+	z-index: 9;
+	display: none;
 }
 
 .color-face{
@@ -154,7 +163,7 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 	width: 100%;
 	background-color: white;
 	position: absolute;
-	z-index: 99999;
+	z-index: 999;
 }
 #load{
 	background-color: rgba(255, 255, 255, 0.8);
@@ -226,6 +235,10 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 	font-size: 1.4em;
 }
 
+.mt-1{
+	margin-top: 1em;
+}
+
 .mt-2{
 	margin-top: 2em;
 }
@@ -244,4 +257,29 @@ nav .input-field label{
 }
 .content-terminos strong {
 	font-style: bold;
+}
+.toolbar{
+	width: 80%;
+}
+.toolbar a {
+	float: right;
+}
+.toolbar ul {
+	background-color:#f9a846;
+	width: 78%;
+	position: relative;
+	float: left;
+}
+.toolbar ul li {
+	text-align: center;
+}
+.h-img-slide {
+	height: 100px;
+}
+.h-img-slide img {
+	width: 100%;
+	height: auto;
+}
+select{
+	display: block;
 }

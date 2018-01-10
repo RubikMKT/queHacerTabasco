@@ -1,36 +1,39 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-android-support-gradle-release": {
+      "ANDROID_SUPPORT_VERSION": "25.+",
+      "PACKAGE_NAME": "com.quehacertabasco"
     },
-    "config_munge": {
-        "files": {}
+    "cordova-plugin-facebook4": {
+      "APP_ID": "135031803893746",
+      "APP_NAME": "QueHacer",
+      "PACKAGE_NAME": "com.quehacertabasco"
     },
-    "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.example.PruebaAPIProject"
-        },
-        "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.example.PruebaAPIProject"
-        },
-        "cordova-sqlite-storage": {
-            "PACKAGE_NAME": "com.example.PruebaAPIProject"
-        },
-        "cordova-plugin-facebook4": {
-            "APP_ID": "135031803893746",
-            "APP_NAME": "QueHacer",
-            "PACKAGE_NAME": "com.quehacertabasco"
-        },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.quehacertabasco"
-        },
-        "cordova-plugin-x-toast": {
-            "PACKAGE_NAME": "com.quehacertabasco"
-        }
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.quehacertabasco"
     },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.quehacertabasco"
-        }
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.quehacertabasco"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.quehacertabasco"
+    },
+    "cordova-plugin-x-toast": {
+      "PACKAGE_NAME": "com.quehacertabasco"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "com.quehacertabasco"
+    },
+    "cordova.plugins.diagnostic": {
+      "PACKAGE_NAME": "com.quehacertabasco"
     }
+  },
+  "dependent_plugins": {}
 }
