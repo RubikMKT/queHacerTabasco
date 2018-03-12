@@ -104,7 +104,7 @@ function details(e) {
                 locations: ""+locationCity+"",
             }
 
-            axios.post('http://165.227.111.118/api/user/createUserApp', data)
+            axios.post('http://138.197.104.17/api/user/createUserApp', data)
             .then(function (response) {
                 btnLogin.style.display = 'none'
                 idFacebook = response.idFacebook
@@ -156,7 +156,7 @@ function details(e) {
   }
 
   function getCategory() {
-    axios.get('http://165.227.111.118/api/user/getCategorias')
+    axios.get('http://138.197.104.17/api/user/getCategorias')
       .then(function (res){
         categories = res.data
         categoryElement.innerHTML = templateCategory(res) 
@@ -177,7 +177,7 @@ function details(e) {
   }
 
   function insertDB(tx) {
-    axios.get('http://165.227.111.118/api/user/getPublicidads')
+    axios.get('http://138.197.104.17/api/user/getPublicidads')
       .then( function (res)  {
         var rest = res.data
         rest.forEach(function(el) {
@@ -216,7 +216,7 @@ function details(e) {
           
           imgSplit =  rs.rows.item(i).imagen
           getImg = imgSplit.split("../")
-          img = 'http://165.227.111.118/'+getImg[2]
+          img = 'http://138.197.104.17/'+getImg[2]
 
           pubArray.push({
             "id": rs.rows.item(i).id,
@@ -240,7 +240,7 @@ function details(e) {
 
   function renderPublicidad(id){
     loadsec.style.display = "flex";
-    axios.get('http://165.227.111.118/api/user/searchUserAppsForFacebook/'+idFacebook)
+    axios.get('http://138.197.104.17/api/user/searchUserAppsForFacebook/'+idFacebook)
       .then( function(res) {
         idUser = res.data.id
         publicidadInteres(idUser)
@@ -252,11 +252,11 @@ function details(e) {
             'publicidad_id': id,
           }
 
-          axios.post('http://165.227.111.118/api/user/createPublicidadInterest', data)
+          axios.post('http://138.197.104.17/api/user/createPublicidadInterest', data)
             .then(function (res) { })
       }
 
-    axios.get('http://165.227.111.118/api/user/searchPublicidad'+ '/'+id)
+    axios.get('http://138.197.104.17/api/user/searchPublicidad'+ '/'+id)
       .then( function (res) {
 
         loadsec.style.display = 'none'
@@ -281,7 +281,7 @@ function details(e) {
 
   function listPubCat (id) {
     loadsec.style.display = 'flex'
-    axios.get('http://165.227.111.118/api/user/getPublicidadForCategory'+ '/'+id)
+    axios.get('http://138.197.104.17/api/user/getPublicidadForCategory'+ '/'+id)
       .then( function (res) {
         loadsec.style.display = 'none'
         contentListPubCategory.style.left = 0 
@@ -303,7 +303,7 @@ function details(e) {
 
   Handlebars.registerHelper('splitUrl', function(url) {
     var t = url.split("../");
-    return "http://165.227.111.118/" + t[2];
+    return "http://138.197.104.17/" + t[2];
   });
 
 function filtrarCategoria(obj, fil) {
@@ -376,7 +376,7 @@ btnSugerencias.addEventListener("click", function (e) {
     }
 
     if(asunto.value !== '' && comentarios.value !== ''){
-      axios.post('http://165.227.111.118/api/user/createSugerencia', data)
+      axios.post('http://138.197.104.17/api/user/createSugerencia', data)
       .then( function(res){
         window.plugins.toast.show('Gracias por su comentario', 'short', 'center')
         asunto.value = ''
@@ -421,7 +421,7 @@ btnSugerencias.addEventListener("click", function (e) {
     contentTerminos.innerHTML = ''
   }
 
-  axios.get('http://165.227.111.118/api/user/getSliders')
+  axios.get('http://138.197.104.17/api/user/getSliders')
     .then( function (res) {
         contentSlider.innerHTML = templateSliders(res)
        
@@ -502,7 +502,7 @@ function sendFormulario() {
     locations: nacionalidad,
   }
 
-  axios.post('http://165.227.111.118/api/user/createUserApp', data)
+  axios.post('http://138.197.104.17/api/user/createUserApp', data)
   .then(function (response) {
       btnLogin.style.display = 'none'
       idFacebook = response.data.idFacebook
