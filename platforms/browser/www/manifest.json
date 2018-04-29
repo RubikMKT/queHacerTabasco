@@ -1,0 +1,18 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Que Hacer Tabasco",
+  "short_name": "Que Hacer Tabasco",
+  "version": "com.quehacertabasco",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "author": "Rubik Estrategia Digital",
+  "icons": [
+    {
+      "src": "www/images/iconqht.png",
+      "type": "image/png",
+      "sizes": "57x57"
+    }
+  ],
+  "orientation": "portrait",
+  "start_url": "index.html"
+}

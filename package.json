@@ -13,7 +13,7 @@
     "axios": "^0.17.0",
     "cordova-android": "^6.3.0",
     "cordova-android-support-gradle-release": "^1.1.5",
-    "cordova-browser": "^4.1.0",
+    "cordova-browser": "^5.0.3",
     "cordova-ios": "^4.5.3",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-facebook4": "^1.9.1",
@@ -37,9 +37,9 @@
       "cordova-plugin-x-toast": {}
     },
     "platforms": [
-      "browser",
       "ios",
-      "android"
+      "android",
+      "browser"
     ]
   }
 }
