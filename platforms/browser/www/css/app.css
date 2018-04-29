@@ -279,3 +279,10 @@ nav .input-field label{
 select{
 	display: block;
 }
+
+.icons{
+	width : 100px;
+	height : 100px;
+	background-color: #3b5998;
+	border: 1px solid red;
+}

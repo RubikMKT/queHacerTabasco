@@ -32,6 +32,13 @@ var templateLoginquehacer = Handlebars.templates['loginquehacer']
 var loginquehacer = document.getElementById('loginquehacer')
 var login_quehacer = document.getElementById('login_quehacer') 
 
+Handlebars.registerHelper('ifCond', function (v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this)
+  }
+  return options.inverse(this)
+})
+
 var app = {
   initialize: function() {
     document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -160,6 +167,7 @@ function details(e) {
       .then(function (res){
         categories = res.data
         categoryElement.innerHTML = templateCategory(res) 
+        console.log(categories)
       })
   }
 
@@ -459,6 +467,7 @@ function shareBtb () {
     }
 }
 
+//Compartir
 function share (a, b) {
   facebookConnectPlugin.showDialog({
     method: "share",
@@ -477,13 +486,14 @@ login_quehacer.addEventListener('click', function (a) {
   loginquehacer.innerHTML = templateLoginquehacer()
 })
 
+// Cierra el login
 function closeLoginquehacer(e) {
   loginquehacer.style.display = 'none'
   loginquehacer.innerHTML = ''
 }
 
+//Envio del formulario
 function sendFormulario() {
-
   var nombre = document.getElementById('nombre').value
   var apellidos = document.getElementById('apellidos').value
   var edad = document.getElementById('edad').value
