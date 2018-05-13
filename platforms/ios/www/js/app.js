@@ -155,11 +155,12 @@ function details(e) {
     getCategory()
   }
 
+  // Obtiene y lista las categorias
   function getCategory() {
     axios.get('http://138.197.104.17/api/user/getCategorias')
       .then(function (res){
         categories = res.data
-        categoryElement.innerHTML = templateCategory(res) 
+        categoryElement.innerHTML = templateCategory(res)
       })
   }
 
@@ -304,6 +305,14 @@ function details(e) {
   Handlebars.registerHelper('splitUrl', function(url) {
     var t = url.split("../");
     return "http://138.197.104.17/" + t[2];
+    
+  });
+
+  Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+    if(v1 === v2) {
+      return options.fn(this);
+    }
+    return options.inverse(this);
   });
 
 function filtrarCategoria(obj, fil) {
@@ -320,7 +329,7 @@ inputFilter.addEventListener("keyup", function (e, i) {
   data = {
     data: category
   }
-  categoryElement.innerHTML = templateCategory(data) 
+  //categoryElement.innerHTML = templateCategory(data) 
 })
 
 
@@ -329,7 +338,7 @@ cleanInput.addEventListener("click", function () {
   data = {
     data: categories
   }
-  categoryElement.innerHTML = templateCategory(data) 
+  //categoryElement.innerHTML = templateCategory(data) 
 })
 
 
@@ -459,6 +468,7 @@ function shareBtb () {
     }
 }
 
+//Compartir
 function share (a, b) {
   facebookConnectPlugin.showDialog({
     method: "share",
@@ -477,13 +487,14 @@ login_quehacer.addEventListener('click', function (a) {
   loginquehacer.innerHTML = templateLoginquehacer()
 })
 
+// Cierra el login
 function closeLoginquehacer(e) {
   loginquehacer.style.display = 'none'
   loginquehacer.innerHTML = ''
 }
 
+//Envio del formulario
 function sendFormulario() {
-
   var nombre = document.getElementById('nombre').value
   var apellidos = document.getElementById('apellidos').value
   var edad = document.getElementById('edad').value

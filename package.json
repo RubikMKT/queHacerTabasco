@@ -5,6 +5,7 @@
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "main": "index.js",
   "scripts": {
+    "compile": "handlebars templates > templates.js",
     "browser": "cordova run build browser",
     "dev": "cordova run browser"
   },
@@ -23,7 +24,8 @@
     "cordova-plugin-whitelist": "^1.3.2",
     "cordova-plugin-x-toast": "^2.6.0",
     "cordova-sqlite-storage": "^2.0.4",
-    "cordova.plugins.diagnostic": "^3.7.1"
+    "cordova.plugins.diagnostic": "^3.7.1",
+    "handlebars": "^4.0.11"
   },
   "cordova": {
     "plugins": {

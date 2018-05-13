@@ -1,12 +1,22 @@
-{{#if data}}
+<!--{{#if data}}
+
   {{#each data}}
     <a class="waves-effect btn-flat nombre-black" id="content-list" onclick="listPubCat({{ id }})">
       <p class="buttons">
-        <p><i class="fa fa-map-o" aria-hidden="true"></i> {{ name }}</p>
+
+
+        {{#ifCond data.nombre 'ENTRETENIMIENTO'}}
+            {{name}} is equal to {{'ENTRETENIMIENTO'}}
+        {{else}}
+            {{name}} is not equal to {{'adasdas'}}
+        {{/ifCond}}
+
+        <p><i class="icons" aria-hidden="true"></i> {{ name }}</p>
+
         <div class="italic"> {{ descripcion }}</div>
       </p>
     </a> 
   {{/each}}
 {{else}}
-  <p>No encontramos categorías</p>
+  <p>No encontramos asdasdasdas categorías</p>
 {{/if}}

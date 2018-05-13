@@ -4,12 +4,43 @@
     <a class="waves-effect btn-flat nombre-black" id="content-list" onclick="listPubCat({{ id }})">
       <p class="buttons">
 
-        <p><i class="" aria-hidden="true"></i> {{ name }}</p>
+        {{#ifCond name 'comida'}}
+          <p><img src="/android_asset/www/images/restaurante.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}
+
+        {{#ifCond name 'ENTRETENIMIENTO'}}
+          <p><img src="/android_asset/www/images/entretenimiento.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}
+
+        {{#ifCond name 'TURISMO'}}
+          <p><img src="/android_asset/www/images/turismo.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}
+        
+        {{#ifCond name 'TRANSPORTE'}}
+          <p><img src="/android_asset/www/images/transporte.png.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}
+
+        {{#ifCond name 'HOTELES'}}
+          <p><img src="/android_asset/www/images/hoteles.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}             
+
+        {{#ifCond name 'CAFE'}}
+          <p><img src="/android_asset/www/images/cafe.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}
+
+        {{#ifCond name 'CULTURAL'}}
+          <p><img src="/android_asset/www/images/cultural.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}
+
+        {{#ifCond name 'NOCTURNA'}}
+          <p><img src="/android_asset/www/images/nocturna.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}
+
 
         <div class="italic"> {{ descripcion }}</div>
       </p>
     </a> 
   {{/each}}
 {{else}}
-  <p>No encontramos asdasdasdas categorías</p>
+  <p>No encontramos categorías</p>
 {{/if}}

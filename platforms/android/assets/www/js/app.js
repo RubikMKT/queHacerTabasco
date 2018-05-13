@@ -32,13 +32,6 @@ var templateLoginquehacer = Handlebars.templates['loginquehacer']
 var loginquehacer = document.getElementById('loginquehacer')
 var login_quehacer = document.getElementById('login_quehacer') 
 
-Handlebars.registerHelper('ifCond', function (v1, v2, options) {
-  if(v1 === v2) {
-    return options.fn(this)
-  }
-  return options.inverse(this)
-})
-
 var app = {
   initialize: function() {
     document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -162,11 +155,12 @@ function details(e) {
     getCategory()
   }
 
+  // Obtiene y lista las categorias
   function getCategory() {
     axios.get('http://138.197.104.17/api/user/getCategorias')
       .then(function (res){
         categories = res.data
-        categoryElement.innerHTML = templateCategory(res) 
+        categoryElement.innerHTML = templateCategory(res)
         console.log(categories)
       })
   }
@@ -312,6 +306,14 @@ function details(e) {
   Handlebars.registerHelper('splitUrl', function(url) {
     var t = url.split("../");
     return "http://138.197.104.17/" + t[2];
+    
+  });
+
+  Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+    if(v1 === v2) { 
+      return options.fn(this);
+    }
+    return options.inverse(this);
   });
 
 function filtrarCategoria(obj, fil) {
@@ -469,10 +471,13 @@ function shareBtb () {
 
 //Compartir
 function share (a, b) {
+  console.log(b)
+  alert(a)
+  alert(b)
   facebookConnectPlugin.showDialog({
     method: "share",
-    href:b,
-    hashtag: '#myHashtag',
+    href: 'http://www.elteapaneco.com/',
+    hashtag: ' #QueHacerHoyTabasco',
     quote: a,
     mobile_iframe: true,
     picture:b,

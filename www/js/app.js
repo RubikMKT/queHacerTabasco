@@ -161,6 +161,7 @@ function details(e) {
       .then(function (res){
         categories = res.data
         categoryElement.innerHTML = templateCategory(res)
+        console.log(categories)
       })
   }
 
@@ -305,6 +306,14 @@ function details(e) {
   Handlebars.registerHelper('splitUrl', function(url) {
     var t = url.split("../");
     return "http://138.197.104.17/" + t[2];
+    
+  });
+
+  Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+    if(v1 === v2) { 
+      return options.fn(this);
+    }
+    return options.inverse(this);
   });
 
 function filtrarCategoria(obj, fil) {
@@ -321,7 +330,7 @@ inputFilter.addEventListener("keyup", function (e, i) {
   data = {
     data: category
   }
-  //categoryElement.innerHTML = templateCategory(data) 
+  categoryElement.innerHTML = templateCategory(data) 
 })
 
 
@@ -330,7 +339,7 @@ cleanInput.addEventListener("click", function () {
   data = {
     data: categories
   }
-  //categoryElement.innerHTML = templateCategory(data) 
+  categoryElement.innerHTML = templateCategory(data) 
 })
 
 
@@ -462,10 +471,13 @@ function shareBtb () {
 
 //Compartir
 function share (a, b) {
+  console.log(b)
+  alert(a)
+  alert(b)
   facebookConnectPlugin.showDialog({
     method: "share",
-    href:b,
-    hashtag: '#myHashtag',
+    href: 'http://www.elteapaneco.com/',
+    hashtag: ' #QueHacerHoyTabasco',
     quote: a,
     mobile_iframe: true,
     picture:b,
