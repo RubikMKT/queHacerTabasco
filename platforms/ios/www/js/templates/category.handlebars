@@ -1,22 +1,46 @@
-<!--{{#if data}}
+{{#if data}}
 
   {{#each data}}
     <a class="waves-effect btn-flat nombre-black" id="content-list" onclick="listPubCat({{ id }})">
       <p class="buttons">
 
-
-        {{#ifCond data.nombre 'ENTRETENIMIENTO'}}
-            {{name}} is equal to {{'ENTRETENIMIENTO'}}
-        {{else}}
-            {{name}} is not equal to {{'adasdas'}}
+        {{#ifCond name 'comida'}}
+          <p><img src="./images/restaurante.png" class="icon"></img> {{ name }}</p>
         {{/ifCond}}
 
-        <p><i class="icons" aria-hidden="true"></i> {{ name }}</p>
+        {{#ifCond name 'ENTRETENIMIENTO'}}
+          <p><img src="./images/entretenimiento.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}
+
+        {{#ifCond name 'TURISMO'}}
+          <p><img src="./images/turismo.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}
+        
+        {{#ifCond name 'TRANSPORTE'}}
+          <p><img src="./images/transporte.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}
+
+        {{#ifCond name 'HOTELES'}}
+          <p><img src="./images/hoteles.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}             
+
+        {{#ifCond name 'CAFE'}}
+          <p><img src="./images/cafe.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}
+
+        {{#ifCond name 'CULTURAL'}}
+          <p><img src="./images/cultural.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}
+
+        {{#ifCond name 'NOCTURNA'}}
+          <p><img src="./images/nocturna.png" class="icon"></img> {{ name }}</p>
+        {{/ifCond}}
+
 
         <div class="italic"> {{ descripcion }}</div>
       </p>
     </a> 
   {{/each}}
 {{else}}
-  <p>No encontramos asdasdasdas categorías</p>
+  <p>No encontramos categorías</p>
 {{/if}}

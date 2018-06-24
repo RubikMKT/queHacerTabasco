@@ -41,6 +41,9 @@
     <feature name="SQLitePlugin">
         <param name="ios-package" value="SQLitePlugin" />
     </feature>
+    <feature name="Diagnostic">
+        <param name="ios-package" value="Diagnostic" />
+    </feature>
     <name>Que Hacer Tabasco</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

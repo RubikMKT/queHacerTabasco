@@ -7,6 +7,9 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-android-support-gradle-release": {
+      "PACKAGE_NAME": "com.quehacertabasco"
+    },
     "cordova-plugin-facebook4": {
       "APP_ID": "135031803893746",
       "APP_NAME": "QueHacer",
@@ -26,6 +29,9 @@
       "PACKAGE_NAME": "com.quehacertabasco"
     },
     "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "com.quehacertabasco"
+    },
+    "cordova.plugins.diagnostic": {
       "PACKAGE_NAME": "com.quehacertabasco"
     }
   },

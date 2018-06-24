@@ -16,28 +16,9 @@
         <div class="col s12 mt-2">
           <form id="formAddUser" method="post">
             <div class="input-field col s12">
-              <input type="text" placeholder="Nombre(s):" class="validate" id="nombre">
+              <input type="text" placeholder="Correo:" class="validate" id="correoLogin">
             </div>
-            <div class="input-field col s12">
-              <input type="text" placeholder="Apellidos:" class="validate" id="apellidos">
-            </div>
-            <div class="input-field col s12">
-              <input type="text" placeholder="Edad:" class="validate" id="edad">
-            </div>  
-            <div class="input col s12">
-              <select id="sexo">
-                <option value="" disabled selected> Sexo:</option>
-                <option value="male">Masculino</option>
-                <option value="female">Femenino</option>
-              </select>
-            </div>
-            <div class="input-field col s12">
-              <input type="text" placeholder="Nacionalidad:" class="validate" id="nacionalidad">
-            </div>
-            <div class="input-field col s12">
-              <input type="text" placeholder="Correo:" class="validate" id="correo">
-            </div>
-            <button type="button" onclick="sendFormulario()" class="btn btn-success right mt-1" role="button"> Guardar<i class="material-icons right">send</i></button>
+            <button type="button" onclick="sendLogin()" class="btn btn-success right mt-1" role="button"> Entrar<i class="material-icons right">send</i></button>
           </form>
         </div>
       </div>

@@ -21,7 +21,7 @@ section#login {
 		justify-content: center;
 }
 
-section#loginquehacer {
+section#loginRegister, section#loginQuehacer {
 	height: 100%;
 	background-color: white;
 	width: 100%;

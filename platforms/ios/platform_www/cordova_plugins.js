@@ -77,18 +77,28 @@ module.exports = [
     "clobbers": [
       "SQLitePlugin"
     ]
+  },
+  {
+    "id": "cordova.plugins.diagnostic.Diagnostic",
+    "file": "plugins/cordova.plugins.diagnostic/www/ios/diagnostic.js",
+    "pluginId": "cordova.plugins.diagnostic",
+    "clobbers": [
+      "cordova.plugins.diagnostic"
+    ]
   }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+  "cordova-android-support-gradle-release": "1.1.5",
   "cordova-plugin-compat": "1.2.0",
   "cordova-plugin-facebook4": "1.9.1",
   "cordova-plugin-geolocation": "2.4.3",
   "cordova-plugin-network-information": "1.3.3",
   "cordova-plugin-whitelist": "1.3.2",
   "cordova-plugin-x-toast": "2.6.0",
-  "cordova-sqlite-storage": "2.0.4"
+  "cordova-sqlite-storage": "2.0.4",
+  "cordova.plugins.diagnostic": "3.7.1"
 };
 // BOTTOM OF METADATA
 });

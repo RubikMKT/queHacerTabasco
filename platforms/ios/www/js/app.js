@@ -28,9 +28,16 @@ var jsonpub = null
 var templateListPublicidad = Handlebars.templates['listPublicidad']
 var templateSliders = Handlebars.templates['slider']
 var contentSlider = document.getElementById('sliderContent')
-var templateLoginquehacer = Handlebars.templates['loginquehacer']
-var loginquehacer = document.getElementById('loginquehacer')
-var login_quehacer = document.getElementById('login_quehacer') 
+var templateLoginRegister = Handlebars.templates['loginRegister']
+var LoginRegister = document.getElementById('loginRegister')
+var login_register = document.getElementById('login_register') 
+
+var templateLogin = Handlebars.templates['loginquehacer']
+var loginQuehacer = document.getElementById('loginQuehacer')
+var login_quehacer = document.getElementById('login_quehacer')
+
+
+
 
 var app = {
   initialize: function() {
@@ -161,6 +168,7 @@ function details(e) {
       .then(function (res){
         categories = res.data
         categoryElement.innerHTML = templateCategory(res)
+        console.log(categories)
       })
   }
 
@@ -309,7 +317,7 @@ function details(e) {
   });
 
   Handlebars.registerHelper('ifCond', function(v1, v2, options) {
-    if(v1 === v2) {
+    if(v1 === v2) { 
       return options.fn(this);
     }
     return options.inverse(this);
@@ -329,7 +337,7 @@ inputFilter.addEventListener("keyup", function (e, i) {
   data = {
     data: category
   }
-  //categoryElement.innerHTML = templateCategory(data) 
+  categoryElement.innerHTML = templateCategory(data) 
 })
 
 
@@ -338,7 +346,7 @@ cleanInput.addEventListener("click", function () {
   data = {
     data: categories
   }
-  //categoryElement.innerHTML = templateCategory(data) 
+  categoryElement.innerHTML = templateCategory(data) 
 })
 
 
@@ -472,8 +480,8 @@ function shareBtb () {
 function share (a, b) {
   facebookConnectPlugin.showDialog({
     method: "share",
-    href:b,
-    hashtag: '#myHashtag',
+    href: 'http://www.elteapaneco.com/',
+    hashtag: ' #QueHacerHoyTabasco',
     quote: a,
     mobile_iframe: true,
     picture:b,
@@ -481,16 +489,51 @@ function share (a, b) {
   });
 }
 
-login_quehacer.addEventListener('click', function (a) {
+
+//lOGIN AND REGISTER
+
+login_quehacer.addEventListener('click', function(a){
   a.preventDefault()
-  loginquehacer.style.display = 'block'
-  loginquehacer.innerHTML = templateLoginquehacer()
+  loginQuehacer.style.display = 'block'
+  loginQuehacer.innerHTML = templateLogin()
 })
 
-// Cierra el login
-function closeLoginquehacer(e) {
-  loginquehacer.style.display = 'none'
-  loginquehacer.innerHTML = ''
+login_register.addEventListener('click', function (a) {
+  a.preventDefault()
+  LoginRegister.style.display = 'block'
+  LoginRegister.innerHTML = templateLoginRegister()
+})
+
+// Cierra login
+function closeLoginquehacer () {
+  loginQuehacer.style.display = 'none'
+  loginQuehacer.innerHTML = ''
+}
+
+// envío de login 
+function sendLogin () {
+  var correo = document.getElementById('correoLogin').value
+
+  axios.get('http://138.197.104.17/api/user/findEmail/'+correo)
+      .then( function(res) {
+        idFacebook = res.data.idUserFacebook
+        if(idFacebook) {
+          window.localStorage.setItem("id", idFacebook)
+          window.localStorage.getItem("id")
+          var value = window.localStorage.getItem("id")
+          loginQuehacer.style.display = 'none'
+          loginQuehacer.innerHTML = ''
+          btnLogin.style.display = 'none'
+        }else {
+          window.plugins.toast.show('Su correo no ha sido registrado', 'short', 'center')
+        }
+      })
+}
+
+// Cierra el registro
+function closeLoginRegister(e) {
+  LoginRegister.style.display = 'none'
+  LoginRegister.innerHTML = ''
 }
 
 //Envio del formulario
@@ -516,10 +559,11 @@ function sendFormulario() {
   axios.post('http://138.197.104.17/api/user/createUserApp', data)
   .then(function (response) {
       btnLogin.style.display = 'none'
-      idFacebook = response.data.idFacebook
+      idFacebook = response.data.idUserFacebook
       window.localStorage.setItem("id", idFacebook)
       var value = window.localStorage.getItem("id")
-      loginquehacer.style.display = 'none'
+      LoginRegister.style.display = 'none'
+      
   })
   .catch(function (error) {
       window.plugins.toast.show('Error de conexión', 'short', 'center')
